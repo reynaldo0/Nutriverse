@@ -57,7 +57,7 @@ const Navbar = () => {
                                 href={item.path}
                                 className="relative text-secondary-200 transition duration-300
                                 after:content-[''] after:absolute after:left-0 after:-bottom-1
-                                after:h-[2px] after:w-0 after:bg-secondary-200 after:transition-all
+                                after:h-0.5 after:w-0 after:bg-secondary-200 after:transition-all
                                 after:duration-300 hover:after:w-full hover:text-secondary-200"
                             >
                                 {item.name}
