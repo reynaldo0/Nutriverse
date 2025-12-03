@@ -8,7 +8,7 @@ import { dummySchools } from "../../data/schoolLeaderboard";
 const NutriTree = () => {
   return (
     <div>
-       <HeroTree />
+      <HeroTree />
       <GameTree items={nutritreeItems} />
       <RulesLeaderboard schools={dummySchools} />
     </div>
