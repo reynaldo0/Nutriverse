@@ -1,11 +1,25 @@
 import { useEffect, useState, useRef } from "react";
 import {
-  PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer,
-  BarChart, Bar, XAxis, YAxis, CartesianGrid
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
 } from "recharts";
 
 export default function ZeroHunger() {
-  const [progress, setProgress] = useState({ kerawanan: 0, undernourishment: 0, fies: 0 });
+  const [progress, setProgress] = useState({
+    kerawanan: 0,
+    undernourishment: 0,
+    fies: 0,
+  });
+
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -30,124 +44,57 @@ export default function ZeroHunger() {
     { name: "Prevalensi FIES (%)", value: progress.fies },
   ];
 
-  const COLORS = ["#16a34a", "#65a30d", "#166534", "#3f6212", "#84cc16", "#a3e635"];
-
-  const styles = {
-    section: {
-      width: "100%",
-      padding: "3rem 1rem",
-      fontFamily: "sans-serif",
-      position: "relative",
-      overflow: "hidden",
-      background: "linear-gradient(to bottom, #fafbe9, #ffe7b3, #f5c16c)"
-    },
-    backgroundImg: {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      width: "100%",
-      height: "350px",
-      backgroundImage: "url(/background/bg-tangan.png)",
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: "bottom center",
-      backgroundSize: "cover",
-      zIndex: 0
-    },
-    backgroundOverlay: {
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      width: "100%",
-      height: "350px",
-      background: "linear-gradient(to top, rgba(250,251,233,0.3), transparent)",
-      zIndex: 1
-    },
-    titleContainer: {
-      textAlign: "center",
-      marginBottom: "2rem",
-      position: "relative",
-      zIndex: 10
-    },
-    titleFlex: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0.5rem",
-      marginBottom: "0.75rem"
-    },
-    titleImg: { width: "3rem", height: "3rem" },
-    titleText: { fontSize: "2.25rem", fontWeight: 800, color: "#3B3B0E" },
-    paragraph: {
-      maxWidth: "50rem",
-      margin: "0 auto",
-      color: "#4B5563",
-      fontSize: "1rem",
-      lineHeight: 1.6
-    },
-    highlight: { color: "#DDA73A", fontWeight: 600 },
-    grid: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "1.5rem",
-      maxWidth: "80rem",
-      margin: "0 auto",
-      zIndex: 10,
-      position: "relative"
-    },
-    card: {
-      background: "#fff",
-      borderRadius: "1.25rem",
-      boxShadow: "0 15px 35px rgba(0,0,0,0.1)",
-      padding: "1.25rem",
-      position: "relative"
-    },
-    cardTitle: {
-      background: "#3B3B0E",
-      color: "#fff",
-      padding: "0.5rem 1rem",
-      borderRadius: "0.75rem 0.75rem 0 0",
-      position: "absolute",
-      top: "-1.25rem",
-      left: "50%",
-      transform: "translateX(-50%)",
-      fontWeight: 600,
-      fontSize: "1rem"
-    },
-    chartContainer: { marginTop: "1.75rem", width: "100%", height: "14rem" },
-    chartNote: { marginTop: "0.5rem", fontSize: "0.75rem", textAlign: "center", color: "#4B5563" },
-    explanation: {
-      maxWidth: "50rem",
-      margin: "2rem auto 0 auto",
-      textAlign: "center",
-      color: "#4B5563",
-      fontSize: "1rem",
-      lineHeight: 1.6
-    },
-    strongText: { fontWeight: 600 },
-    greenText: { color: "#166534", fontWeight: 600 }
-  };
+  const COLORS = [
+    "#16a34a",
+    "#65a30d",
+    "#166534",
+    "#3f6212",
+    "#84cc16",
+    "#a3e635",
+  ];
 
   return (
-    <section ref={sectionRef} style={styles.section}>
-      <div style={styles.backgroundImg}></div>
-      <div style={styles.backgroundOverlay}></div>
+    <section
+      ref={sectionRef}
+      className="w-full py-12 px-4 font-sans relative overflow-hidden bg-gradient-to-b from-[#fafbe9] via-[#ffe7b3] to-[#f5c16c]"
+    >
+      {/* Background image */}
+      <div
+        className="absolute bottom-0 left-0 w-full h-[350px] bg-no-repeat bg-bottom bg-cover"
+        style={{ backgroundImage: "url(/background/bg-tangan.png)" }}
+      ></div>
 
-      <div style={styles.titleContainer}>
-        <div style={styles.titleFlex}>
-          <img src="/icon/zerohunger.png" alt="SDG 2 Icon" style={styles.titleImg} />
-          <h2 style={styles.titleText}>Zero Hunger</h2>
+      {/* Background overlay */}
+      <div className="absolute bottom-0 left-0 w-full h-[350px] bg-gradient-to-t from-[rgba(250,251,233,0.3)] to-transparent"></div>
+
+      {/* Title section */}
+      <div className="text-center mb-8 relative z-10">
+        <div className="flex justify-center items-center gap-2 mb-3">
+          <img src="/icon/zerohunger.png" alt="SDG 2 Icon" className="w-12 h-12" />
+          <h2 className="text-4xl font-extrabold text-[#3B3B0E]">Zero Hunger</h2>
         </div>
-        <p style={styles.paragraph}>
-          Pemerintah Indonesia melalui <span style={styles.highlight}>Badan Pangan Nasional (NFA) </span> 
-          terus memperkuat ketahanan pangan nasional dalam rangka mewujudkan 
-          <span style={styles.highlight}> Zero Hunger</span> pada tahun 2030. Data terbaru menunjukkan tren positif dalam penyediaan pangan pokok dan penurunan prevalensi kerawanan pangan di Indonesia.
+
+        <p className="max-w-3xl mx-auto text-gray-600 text-base leading-relaxed">
+          Pemerintah Indonesia melalui{" "}
+          <span className="text-[#DDA73A] font-semibold">
+            Badan Pangan Nasional (NFA)
+          </span>{" "}
+          terus memperkuat ketahanan pangan nasional dalam rangka mewujudkan
+          <span className="text-[#DDA73A] font-semibold"> Zero Hunger</span> pada tahun 2030.
+          Data terbaru menunjukkan tren positif dalam penyediaan pangan pokok dan
+          penurunan prevalensi kerawanan pangan di Indonesia.
         </p>
       </div>
 
-      <div style={styles.grid}>
-        <div style={styles.card}>
-          <h3 style={styles.cardTitle}>Proyeksi Stok Pangan 2024</h3>
-          <div style={styles.chartContainer}>
+      {/* Grid charts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto relative z-10">
+        {/* Card 1 */}
+        <div className="bg-white rounded-xl shadow-xl p-5 relative">
+          <h3 className="absolute top-[-1.25rem] left-1/2 -translate-x-1/2 bg-[#3B3B0E] text-white px-4 py-2 rounded-t-xl text-sm font-semibold">
+            Proyeksi Stok Pangan 2024
+          </h3>
+
+          <div className="mt-7 w-full h-56">
             <ResponsiveContainer>
               <BarChart data={stockData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -163,12 +110,19 @@ export default function ZeroHunger() {
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <p style={styles.chartNote}>Sumber: Badan Pangan Nasional, 2024</p>
+
+          <p className="mt-2 text-xs text-center text-gray-600">
+            Sumber: Badan Pangan Nasional, 2024
+          </p>
         </div>
 
-        <div style={styles.card}>
-          <h3 style={styles.cardTitle}>Indikator Ketahanan Pangan 2023</h3>
-          <div style={styles.chartContainer}>
+        {/* Card 2 */}
+        <div className="bg-white rounded-xl shadow-xl p-5 relative">
+          <h3 className="absolute top-[-1.25rem] left-1/2 -translate-x-1/2 bg-[#3B3B0E] text-white px-4 py-2 rounded-t-xl text-sm font-semibold">
+            Indikator Ketahanan Pangan 2023
+          </h3>
+
+          <div className="mt-7 w-full h-56">
             <ResponsiveContainer>
               <PieChart>
                 <Pie
@@ -188,16 +142,21 @@ export default function ZeroHunger() {
               </PieChart>
             </ResponsiveContainer>
           </div>
-          <p style={styles.chartNote}>Sumber: NFA & FAO, 2023</p>
+
+          <p className="mt-2 text-xs text-center text-gray-600">
+            Sumber: NFA & FAO, 2023
+          </p>
         </div>
       </div>
 
-      <div style={styles.explanation}>
+      {/* Explanation */}
+      <div className="max-w-3xl mx-auto mt-8 text-center text-gray-600 text-base leading-relaxed">
         <p>
-           Pada tahun 2023, Indonesia berhasil menurunkan tingkat <strong style={styles.strongText}>undernourishment</strong> 
-          menjadi <span style={styles.greenText}>8,53%</span> dan 
-          <strong style={styles.strongText}> food insecurity</strong> menjadi 
-          <span style={styles.greenText}> 4,5%</span>.
+          Pada tahun 2023, Indonesia berhasil menurunkan tingkat{" "}
+          <strong className="font-semibold">undernourishment</strong> menjadi{" "}
+          <span className="text-green-800 font-semibold">8,53%</span> dan{" "}
+          <strong className="font-semibold">food insecurity</strong> menjadi
+          <span className="text-green-800 font-semibold"> 4,5%</span>.
         </p>
       </div>
     </section>

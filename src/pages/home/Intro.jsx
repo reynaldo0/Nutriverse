@@ -12,7 +12,7 @@ export default function NutiIntro() {
   return (
     <section
       id="nuti-section"
-      className="min-h-[80vh] flex flex-col items-center justify-center w-full px-6 pt-10 pb-10 relative bg-[#FCFFEC]"
+      className="min-h-[80vh] flex flex-col items-center justify-center w-full px-6 pt-10 pb-10 relative bg-[#FCFFEC] overflow-hidden"
     >
       {/* Background */}
       <div
@@ -40,7 +40,9 @@ export default function NutiIntro() {
         {/* Teks */}
         <p
           className={`text-[#2C2C2C] text-xl md:text-2xl leading-relaxed transition-all duration-700 ease-out ${
-            animateText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            animateText
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 -translate-x-8"
           }`}
         >
           Hai namaku adalah{" "}
@@ -64,27 +66,12 @@ export default function NutiIntro() {
             } group-hover:scale-110 group-hover:rotate-6`}
           />
 
-          {/* Dekorasi lebih kecil */}
+          {/* Dekorasi */}
           <span className="absolute -top-4 -left-4 w-6 h-6 rounded-full bg-green-300 opacity-70 animate-ping"></span>
           <span className="absolute top-6 -right-6 w-4 h-4 rounded-full bg-yellow-300 opacity-70 animate-bounce"></span>
           <span className="absolute -bottom-4 left-8 w-7 h-7 rounded-full bg-green-500 opacity-60 animate-pulse"></span>
         </div>
       </div>
-
-      {/* Style Animasi Custom */}
-      <style>
-        {`
-          @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-          }
-
-          .animate-float {
-            animation: float 3s ease-in-out infinite;
-          }
-        `}
-      </style>
     </section>
   );
 }

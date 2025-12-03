@@ -12,7 +12,7 @@ export default function TeamNutriverse() {
     {
       id: 1,
       name: "Reynaldo Yusellino",
-      role: "Backend Developer",
+      role: "Frontend Developer",
       img: "/team/reynaldo.jpg",
       socials: {
         github: "https://github.com/reynaldo0",
@@ -35,38 +35,69 @@ export default function TeamNutriverse() {
   ];
 
   return (
-    <section className="team-section">
-      <div className="background" />
+    <section className="relative min-h-screen px-5 py-16 flex flex-col items-center bg-gradient-to-br from-green-50 to-green-100 overflow-hidden">
 
-      <h2 className={`team-title ${animateCards ? "animate" : ""}`}>
-        Meet the <span>Team</span>
+      {/* Background with reduced blur */}
+      <div
+        className="absolute inset-0 bg-[url('/background/heroabout.png')] bg-cover bg-center opacity-20 blur-[1px]"
+      ></div>
+
+      {/* Title */}
+      <h2
+        className={`text-[2.2rem] font-extrabold text-[#1f3c00] text-center mb-8 tracking-wide transition-all duration-700 ${
+          animateCards ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+        }`}
+      >
+        Meet the <span className="text-[#90C444]">Team</span>
       </h2>
 
-      <div className={`team-grid ${animateCards ? "animate" : ""}`}>
+      {/* Grid */}
+      <div
+        className={`grid w-full max-w-[45rem] gap-8 grid-cols-1 sm:grid-cols-2 justify-items-center transition-all duration-700 ${
+          animateCards ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        }`}
+      >
         {teamData.map((member, i) => (
           <div
             key={member.id}
-            className="team-card"
             style={{ animationDelay: `${i * 0.25}s` }}
+            className="w-full max-w-[18rem] bg-white/85 backdrop-blur-xl p-7 rounded-3xl shadow-xl text-center scale-[0.95] opacity-0 animate-fadeUp hover:scale-[1.04] hover:shadow-2xl transition-all duration-300"
           >
-            <div className="img-wrapper">
-              <img src={member.img} alt={member.name} />
-              <div className="overlay-glow" />
+            {/* Image Wrapper */}
+            <div className="relative w-36 h-40 rounded-2xl overflow-hidden mb-4 mx-auto">
+              <img
+                src={member.img}
+                alt={member.name}
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#90C444]/30 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"></div>
             </div>
 
-            <h3>{member.name}</h3>
-            <p>{member.role}</p>
+            <h3 className="text-xl font-bold text-[#1f3c00]">{member.name}</h3>
+            <p className="text-gray-600 italic text-sm mb-3">{member.role}</p>
 
-            <div className="social-icons">
-              <a href={member.socials.github} target="_blank" rel="noreferrer">
+            <div className="flex justify-center gap-3 text-lg">
+              <a
+                href={member.socials.github}
+                target="_blank"
+                className="bg-lime-200 p-2 rounded-full text-green-800 transition-transform duration-200 hover:scale-110"
+              >
                 <FaGithub />
               </a>
 
-              <a href={member.socials.instagram} target="_blank" rel="noreferrer">
+              <a
+                href={member.socials.instagram}
+                target="_blank"
+                className="bg-lime-200 p-2 rounded-full text-green-800 transition-transform duration-200 hover:scale-110"
+              >
                 <FaInstagram />
               </a>
 
-              <a href={member.socials.linkedin} target="_blank" rel="noreferrer">
+              <a
+                href={member.socials.linkedin}
+                target="_blank"
+                className="bg-lime-200 p-2 rounded-full text-green-800 transition-transform duration-200 hover:scale-110"
+              >
                 <FaLinkedinIn />
               </a>
             </div>
@@ -74,141 +105,14 @@ export default function TeamNutriverse() {
         ))}
       </div>
 
+      {/* Custom Keyframes Tailwind */}
       <style>{`
-        .team-section {
-          min-height: 100vh;
-          padding: 4rem 1.25rem 6rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          background: linear-gradient(135deg, #f0fff4, #e1f5e7);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .background {
-          position: absolute;
-          inset: 0;
-          background-image: url('/background/heroabout.png');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.22;
-          filter: blur(1px);
-        }
-
-        .team-title {
-          font-size: 2.2rem;
-          font-weight: 800;
-          color: #1f3c00;
-          text-align: center;
-          margin-bottom: 2rem;
-          letter-spacing: 1px;
-          transition: 0.7s ease;
-          opacity: 0;
-          transform: translateY(-1rem);
-        }
-        .team-title span { color: #90C444; }
-        .team-title.animate { opacity: 1; transform: translateY(0); }
-
-        .team-grid {
-          width: 100%;
-          max-width: 45rem;
-          display: grid;
-          gap: 2rem;
-          grid-template-columns: 1fr;
-          justify-items: center;
-          opacity: 0;
-          transform: translateY(1.5rem);
-          transition: 0.7s ease;
-        }
-        @media (min-width: 640px) {
-          .team-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        .team-grid.animate {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .team-card {
-          background: rgba(255,255,255,0.85);
-          backdrop-filter: blur(12px);
-          padding: 1.8rem;
-          border-radius: 1.8rem;
-          box-shadow: 0 12px 28px rgba(0,0,0,0.07);
-          text-align: center;
-          transform: scale(0.95);
-          opacity: 0;
-          animation: fadeInUp 0.7s ease forwards;
-          transition: 0.35s ease;
-          width: 100%;
-          max-width: 18rem;
-        }
-        .team-card:hover {
-          transform: scale(1.04);
-          box-shadow: 0 18px 36px rgba(0,0,0,0.12);
-        }
-
-        /* === FIX UTAMA: FOTO 100% CENTER === */
-        .img-wrapper {
-          width: 9rem;
-          height: 10rem;
-          border-radius: 1.6rem;
-          overflow: hidden;
-          margin-bottom: 1rem;
-          position: relative;
-          margin-left: auto;
-          margin-right: auto; /* FOTO BENAR2 DI TENGAH */
-        }
-
-        .img-wrapper img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: 0.4s;
-        }
-        .img-wrapper:hover img { transform: scale(1.07); }
-
-        .overlay-glow {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(144,196,68,0.25), transparent);
-          opacity: 0;
-          transition: 0.4s;
-        }
-        .img-wrapper:hover .overlay-glow { opacity: 1; }
-
-        .team-card h3 {
-          font-size: 1.3rem;
-          font-weight: 700;
-          color: #1f3c00;
-          margin-bottom: 0.2rem;
-        }
-
-        .team-card p {
-          font-size: 0.95rem;
-          color: #4B5563;
-          margin-bottom: 0.7rem;
-          font-style: italic;
-        }
-
-        .social-icons {
-          display: flex;
-          gap: 0.7rem;
-          justify-content: center;
-          font-size: 1.1rem;
-        }
-        .social-icons a {
-          background: #d9f99d;
-          padding: 0.55rem;
-          border-radius: 50%;
-          color: #166534;
-          transition: 0.25s;
-        }
-        .social-icons a:hover { transform: scale(1.15); }
-
-        @keyframes fadeInUp {
+        @keyframes fadeUp {
           0% { opacity: 0; transform: translateY(22px) scale(0.95); }
           100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-fadeUp {
+          animation: fadeUp 0.7s ease forwards;
         }
       `}</style>
     </section>
