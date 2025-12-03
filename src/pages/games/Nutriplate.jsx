@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import { nutriplateItems } from "../../data/nutriplate";
+import GamePlate from "./GamePlate";
+import RulesPlate from "./RulesPlate";
+import { dummySchools } from "../../data/schoolLeaderboard";
+import HeroPlate from "./HeroPlate";
 
 const Nutriplate = () => {
   return (
     <div>
-      Game1
+      <HeroPlate />
+      <RulesPlate schools={dummySchools} />
+      <GamePlate items={nutriplateItems} />
     </div>
-  )
-}
+  );
+};
 
-export default Nutriplate
+export default Nutriplate;
