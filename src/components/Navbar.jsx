@@ -16,7 +16,7 @@ const Navbar = () => {
         : null;
 
     const mainMenu = [
-        { name: "Beranda", path: "/home" },
+        { name: "Beranda", path: "/" },
         { name: "Tentang", path: "/about" },
         { name: "Artikel", path: "/article" },
         { name: "Komunitas", path: "/community" },

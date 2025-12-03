@@ -7,20 +7,24 @@ import Articles from "./pages/articles/Articles";
 import About from "./pages/about/About";
 import Home from "./pages/home/Home";
 import ArticleDetail from "./pages/articles/ArticleDetail";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/article" element={<Articles />} />
-        <Route path="/article/:slug" element={<ArticleDetail />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/nutritree" element={<NutriTree />} />
-        <Route path="/nutriplate" element={<Nutriplate />} />
-      </Routes>
+      <div className="overflow-x-hidden">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/article" element={<Articles />} />
+          <Route path="/article/:slug" element={<ArticleDetail />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/nutritree" element={<NutriTree />} />
+          <Route path="/nutriplate" element={<Nutriplate />} />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
