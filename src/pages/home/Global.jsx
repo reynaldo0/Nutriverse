@@ -44,11 +44,13 @@ export default function GlobalHunger() {
   }, []);
 
   const COLORS = ["#166534", "#84cc16", "#a3e635", "#65a30d", "#3f6212", "#bef264", "#d9f99d"];
+
   const latestGHI = progress.ghiTrend.length ? progress.ghiTrend.at(-1).value : 0;
 
   const indonesiaGHI =
     progress.ghiASEAN.find((c) => c.country === "Indonesia")?.value || 0;
 
+  // CUSTOM LEGEND MINI
   const renderCustomLegend = (props) => {
     const { payload } = props;
     return (
@@ -59,7 +61,9 @@ export default function GlobalHunger() {
               className="legend-color"
               style={{ backgroundColor: entry.color }}
             />
-            {entry.payload.country}: {entry.payload.value}
+            <span className="legend-text">
+              {entry.payload.country}: {entry.payload.value}
+            </span>
           </li>
         ))}
       </ul>
@@ -86,7 +90,7 @@ export default function GlobalHunger() {
 
         <div className="chart-grid">
 
-          {/* BAR CHART */}
+          {/* ============= BAR CHART ============= */}
           <div className="chart-card fade-in-up">
             <h3 className="chart-title">Tren Skor GHI Indonesia (2000–2022)</h3>
 
@@ -94,11 +98,11 @@ export default function GlobalHunger() {
               <ResponsiveContainer>
                 <BarChart data={progress.ghiTrend}>
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="value" barSize={45} radius={[8, 8, 0, 0]}>
+                  <XAxis dataKey="year" tick={{ fontSize: 10 }} />
+                  <YAxis tick={{ fontSize: 10 }} />
+                  <Tooltip contentStyle={{ fontSize: 10 }} />
+                  <Legend wrapperStyle={{ fontSize: 10 }} />
+                  <Bar dataKey="value" barSize={28} radius={[6, 6, 0, 0]}>
                     {progress.ghiTrend.map((entry, i) => (
                       <Cell key={i} fill={COLORS[i % COLORS.length]} />
                     ))}
@@ -109,8 +113,7 @@ export default function GlobalHunger() {
 
             <p className="chart-source">Sumber: GHI 2000–2022</p>
           </div>
-
-          {/* PIE CHART */}
+          
           <div className="chart-card fade-in-up delay-200">
             <h3 className="chart-title">Perbandingan GHI ASEAN (2022)</h3>
 
@@ -121,15 +124,19 @@ export default function GlobalHunger() {
                     data={progress.ghiASEAN}
                     cx="50%"
                     cy="50%"
-                    outerRadius={110}
+                    outerRadius={78}
                     dataKey="value"
-                    label={({ country, value }) => `${country}: ${value}`}
+                    label={({ country, value }) =>
+                      `${country} (${value})`
+                    }
+                    labelStyle={{ fontSize: 10 }}
                   >
                     {progress.ghiASEAN.map((entry, i) => (
                       <Cell key={i} fill={COLORS[i % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
+
+                  <Tooltip contentStyle={{ fontSize: 10 }} />
                   <Legend content={renderCustomLegend} />
                 </PieChart>
               </ResponsiveContainer>
@@ -148,12 +155,12 @@ export default function GlobalHunger() {
         </div>
       </div>
 
-      {/* CSS */}
+      {/* ============= CSS ============= */}
       <style>{`
         .gh-section {
           width: 100%;
-          min-height: 100vh;
-          padding: 90px 20px;
+          min-height: 90vh;
+          padding: 60px 18px;
           background: #FCFFEC;
           position: relative;
           overflow: hidden;
@@ -164,7 +171,7 @@ export default function GlobalHunger() {
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
-          opacity: 0.5;
+          opacity: 0.35;
           position: absolute;
           inset: 0;
         }
@@ -172,116 +179,129 @@ export default function GlobalHunger() {
         .gh-container {
           position: relative;
           z-index: 10;
-          max-width: 1300px;
+          max-width: 1050px;
           margin: auto;
         }
 
         .gh-header {
           text-align: center;
-          margin-bottom: 60px;
+          margin-bottom: 36px;
         }
 
         .gh-title {
-          font-size: 55px;
+          font-size: 40px;
           font-weight: 900;
           color: #3B3B0E;
         }
 
         .gh-underline {
-          width: 90px;
-          height: 4px;
+          width: 65px;
+          height: 3px;
           background: #DDA73A;
           display: block;
-          margin: 12px auto 0;
+          margin: 10px auto 0;
           border-radius: 5px;
         }
 
         .gh-subtext {
-          max-width: 900px;
-          margin: 20px auto 0;
-          font-size: 20px;
-          line-height: 1.6;
-        }
-
-        .highlight {
-          color: #DDA73A;
-          font-weight: 700;
+          max-width: 760px;
+          margin: 14px auto 0;
+          font-size: 16px;
         }
 
         .chart-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 30px;
+          gap: 18px;
         }
 
         .chart-card {
-          background: rgba(255, 255, 255, 0.8);
-          border-radius: 25px;
-          padding: 30px;
-          box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+          background: rgba(255,255,255,0.85);
+          border-radius: 18px;
+          padding: 18px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.10);
         }
 
         .chart-title {
           text-align: center;
-          font-size: 26px;
-          font-weight: 700;
-          margin-bottom: 20px;
+          font-size: 17px;
+          margin-bottom: 10px;
         }
 
         .chart-box {
           width: 100%;
-          height: 350px;
+          height: 210px;
         }
 
-        .chart-source {
-          text-align: center;
-          margin-top: 10px;
-          font-size: 14px;
-          opacity: 0.7;
-          font-style: italic;
+        .recharts-cartesian-axis-tick tspan {
+          font-size: 10px !important;
+        }
+
+        text.recharts-label {
+          font-size: 10px !important;
+        }
+
+        .recharts-default-tooltip {
+          font-size: 10px !important;
         }
 
         .legend-list {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: 12px;
-          margin-top: 12px;
-          list-style: none;
           padding: 0;
+          gap: 4px;
+          margin-top: 6px;
+          list-style: none;
         }
 
         .legend-item {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 4px;
+          font-size: 10px;
         }
 
         .legend-color {
-          width: 14px;
-          height: 14px;
+          width: 10px;
+          height: 10px;
+        }
+
+        .legend-text {
+          font-size: 10px;
+        }
+
+        .chart-source {
+          text-align: center;
+          font-size: 10px;
+          margin-top: 4px;
+          opacity: 0.6;
         }
 
         .gh-summary {
-          margin-top: 50px;
+          margin-top: 30px;
           text-align: center;
-          font-size: 20px;
-          line-height: 1.7;
+          font-size: 16px;
         }
-
+          
         .fade-in {
           opacity: 0;
-          animation: fadeIn 1s forwards;
+          animation: fadeIn 0.8s forwards;
         }
 
         .fade-in-up {
           opacity: 0;
-          transform: translateY(30px);
-          animation: fadeInUp 1s forwards;
+          transform: translateY(20px);
+          animation: fadeInUp 0.8s forwards;
         }
 
-        .delay-200 { animation-delay: .2s; }
-        .delay-400 { animation-delay: .4s; }
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .delay-400 {
+          animation-delay: 0.4s;
+        }
 
         @keyframes fadeIn {
           to { opacity: 1; }

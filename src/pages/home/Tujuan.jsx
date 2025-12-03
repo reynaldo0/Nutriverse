@@ -15,12 +15,11 @@ export default function Tujuan() {
       const rect = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      // progress 0 → 1 saat section keliatan di layar
       let progress = (windowHeight - rect.top) / (windowHeight * 1.2);
       progress = Math.min(Math.max(progress, 0), 1);
 
       const isMobile = window.innerWidth < 768;
-      const maxShift = isMobile ? 70 : 150;
+      const maxShift = isMobile ? 50 : 110; // lebih kecil dari sebelumnya
 
       setOffsetX(progress * maxShift);
     };
@@ -37,6 +36,7 @@ export default function Tujuan() {
 
       <div className={`tujuan-card ${animateText ? "animate-in" : ""}`}>
         <h2 className="tujuan-title">Tujuan</h2>
+
         <p className="tujuan-text">
           Mengingat Indonesia masih berada pada tingkat kelaparan{" "}
           <span className="highlight-red">"Sedang"</span> dengan skor{" "}
@@ -51,7 +51,6 @@ export default function Tujuan() {
         </p>
       </div>
 
-      {/* Parallax Grass */}
       <div className="grass-wrapper">
         <img
           src="/icon/rumput-kiri.png"
@@ -72,7 +71,7 @@ export default function Tujuan() {
             position: relative;
             width: 100%;
             min-height: 100vh;
-            padding: 6rem 1.5rem 10rem; 
+            padding: 4rem 1.25rem 8rem;  /* DIPERKECIL */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,23 +87,23 @@ export default function Tujuan() {
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            opacity: 0.4;
+            opacity: 0.35; /* sedikit redup */
             z-index: 0;
         }
 
         .tujuan-card {
             position: relative;
             z-index: 10;
-            max-width: 960px;
+            max-width: 820px;   /* DIPERKECIL */
             background: #F7FFF0;
-            border-radius: 2rem;
+            border-radius: 1.6rem;
             border: 1px solid #E0F0C2;
-            padding: 3rem 2.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 2.2rem 1.8rem;  /* DIPERKECIL */
+            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.92);
             transition: all 0.7s ease-out;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .tujuan-card.animate-in {
@@ -114,15 +113,15 @@ export default function Tujuan() {
 
         .tujuan-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2rem; /* DIPERKECIL */
             font-weight: 800;
             color: #3B3B0E;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .tujuan-text {
-            font-size: 1.125rem;
-            line-height: 1.8;
+            font-size: 1rem; /* DIPERKECIL */
+            line-height: 1.65;
             text-align: justify;
             color: #374151;
         }
@@ -130,7 +129,6 @@ export default function Tujuan() {
         .highlight-red { color: #AF3E3E; font-weight: 600; }
         .highlight-green { color: #90C444; font-weight: 600; }
 
-        /* FIX: rumput selalu menempel ke bawah page */
         .grass-wrapper {
             position: absolute;
             bottom: 0;
@@ -145,12 +143,19 @@ export default function Tujuan() {
 
         .grass-left,
         .grass-right {
-            width: 50%;
-            max-width: 600px;
+            width: 40%;  /* DIPERKECIL dari 50% */
+            max-width: 460px; /* DIPERKECIL */
             object-fit: contain;
             transition: transform 0.15s linear;
         }
-        `}</style>
+
+        /* Mobile adjust */
+        @media (max-width: 768px) {
+          .tujuan-title { font-size: 1.6rem; }
+          .tujuan-text { font-size: 0.92rem; }
+          .grass-left, .grass-right { width: 55%; max-width: 320px; }
+        }
+      `}</style>
     </section>
   );
 }

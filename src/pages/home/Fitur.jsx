@@ -55,7 +55,7 @@ export default function FiturWebsite() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 4rem 1.5rem;
+                    padding: 3rem 1.2rem; /* lebih kecil */
                     position: relative;
                     background: #FCFFEC;
                     overflow: hidden;
@@ -67,7 +67,7 @@ export default function FiturWebsite() {
                     background-image: url('/background/herohome.png');
                     background-size: cover;
                     background-position: center;
-                    opacity: 0.5;
+                    opacity: 0.4;
                     background-attachment: fixed;
                 }
 
@@ -76,44 +76,44 @@ export default function FiturWebsite() {
                 }
 
                 .fitur-title {
-                    font-size: 3rem;
+                    font-size: 2.2rem; /* KECIL */
                     font-weight: 800;
                     color: #3B3B0E;
                     text-align: center;
-                    margin-bottom: 3rem;
+                    margin-bottom: 2rem; /* kecil */
                 }
 
                 .fitur-card {
                     position: relative;
                     background: #F0FCD7;
-                    border-radius: 1rem;
-                    padding: 2.5rem 3rem;
-                    max-width: 1200px;
+                    border-radius: 0.8rem; /* lebih kecil */
+                    padding: 1.8rem 2rem; /* lebih kecil */
+                    max-width: 950px; /* lebih kecil */
                     margin: auto;
-                    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
                 }
 
                 .fitur-divider {
                     position: absolute;
                     left: 50%;
-                    top: 2rem;
-                    bottom: 2rem;
-                    width: 2px;
+                    top: 1.5rem;
+                    bottom: 1.5rem;
+                    width: 1.5px; /* lebih tipis */
                     background: #b7df98;
                 }
 
                 .fitur-grid {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    gap: 4rem;
-                    max-width: 900px;
+                    gap: 2.5rem; /* lebih kecil */
+                    max-width: 720px; /* lebih kecil */
                     margin: auto;
                 }
 
                 .fitur-column {
                     display: flex;
                     flex-direction: column;
-                    gap: 5rem;
+                    gap: 3rem; /* lebih kecil */
                     justify-content: center;
                 }
 
@@ -133,35 +133,37 @@ export default function FiturWebsite() {
                 }
 
                 .fitur-icon {
-                    width: 7rem;
+                    width: 5rem; /* sebelumnya 7rem → DIPERKECIL 30% */
                     transition: all 0.5s ease;
-                    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+                    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
                 }
 
                 .group:hover .fitur-icon {
-                    transform: scale(1.1) rotate(6deg);
+                    transform: scale(1.08) rotate(5deg);
                     animation: bounce 0.6s;
                 }
 
                 .fitur-text {
-                    margin-top: 0.75rem;
-                    font-size: 1.4rem;
+                    margin-top: 0.6rem;
+                    font-size: 1.1rem; /* lebih kecil */
                     font-weight: 500;
                     color: #3B3B0E;
                 }
 
                 @keyframes bounce {
                     0% { transform: translateY(0); }
-                    50% { transform: translateY(-8px); }
+                    50% { transform: translateY(-6px); }
                     100% { transform: translateY(0); }
                 }
 
                 /* Responsive */
                 @media (max-width: 768px) {
-                    .fitur-title { font-size: 2.3rem; }
-                    .fitur-grid { grid-template-columns: 1fr; gap: 3rem; }
+                    .fitur-title { font-size: 1.9rem; }
+                    .fitur-grid { grid-template-columns: 1fr; gap: 2rem; }
                     .fitur-divider { display: none; }
                     .right-align, .left-align { align-items: center; }
+                    .fitur-icon { width: 4.3rem; } /* kecil */
+                    .fitur-text { font-size: 1rem; }
                 }
             `}</style>
         </section>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Sprout } from "lucide-react"; 
+import { Sprout } from "lucide-react";
 
 export default function ProdukUnggul() {
     const products = [
@@ -40,7 +40,7 @@ export default function ProdukUnggul() {
     const [showDetail, setShowDetail] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
 
-    // --- SIMULASI BARU ---
+    // SIMULASI
     const [showSimulation, setShowSimulation] = useState(false);
     const [selectedMethod, setSelectedMethod] = useState("");
     const [simulationResult, setSimulationResult] = useState(null);
@@ -65,7 +65,7 @@ export default function ProdukUnggul() {
         },
         "Okulasi Tanaman": {
             impact: "+50% ketahanan tanaman, +40% kualitas buah.",
-            desc: "Okulasi tanaman menggabungkan keunggulan dua varietas untuk menciptakan tanaman yang lebih produktif dan tahan lama, mendukung pertanian berkelanjutan.",
+            desc: "Okulasi tanaman menggabungkan keunggulan dua varietas untuk menciptakan tanaman yang lebih produktif dan tahan lama.",
         },
     };
 
@@ -108,26 +108,25 @@ export default function ProdukUnggul() {
     };
 
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center w-full px-6 pt-24 pb-16 bg-[#FCFFEC] overflow-hidden">
-            {/* Background */}
+        <section className="relative min-h-screen flex flex-col items-center justify-center w-full px-4 pt-16 pb-12 bg-[#FCFFEC] overflow-hidden">
             <div
-                className="absolute inset-0 bg-[url('/background/heroartikel.png')] opacity-50 bg-no-repeat bg-cover bg-top"
+                className="absolute inset-0 bg-[url('/background/heroartikel.png')] opacity-40 bg-no-repeat bg-cover bg-top"
                 style={{ backgroundAttachment: "fixed", zIndex: 0 }}
             />
 
             <div className="relative z-10 flex flex-col items-center w-full">
-                <h2 className="text-6xl md:text-7xl font-extrabold text-[#3B3B0E] mb-12 tracking-wide">
+                <h2 className="text-4xl md:text-4xl font-extrabold text-[#3B3B0E] mb-8 tracking-wide">
                     Produk Unggul
                 </h2>
 
-                {/* Garis indikator */}
-                <div className="relative flex items-center justify-center w-full max-w-3xl mb-12">
+                {/* Indikator */}
+                <div className="relative flex items-center justify-center w-full max-w-2xl mb-8">
                     <div className="absolute w-full h-1 bg-[#3B3B0E] rounded"></div>
                     <div className="flex w-full justify-between relative z-10 px-4">
                         {products.map((_, i) => (
                             <div
                                 key={i}
-                                className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer ${
+                                className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
                                     i === currentIndex
                                         ? "bg-[#88A825] scale-125 shadow-lg"
                                         : "bg-[#3B3B0E]"
@@ -142,8 +141,8 @@ export default function ProdukUnggul() {
                     </div>
                 </div>
 
-                {/* Carousel Produk */}
-                <div className="relative w-full max-w-5xl overflow-hidden">
+                {/* Carousel */}
+                <div className="relative w-full max-w-3xl overflow-hidden">
                     <div
                         className="flex transition-transform duration-700 ease-out"
                         style={{
@@ -162,15 +161,15 @@ export default function ProdukUnggul() {
                                             : "opacity-0 -translate-y-8"
                                     }`}
                                 >
-                                    <div className="w-56 h-56 rounded-full bg-white shadow-2xl border-2 border-[#E0EBD2] flex items-center justify-center hover:scale-110 transition-transform duration-500 overflow-hidden">
+                                    <div className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-white shadow-xl border-2 border-[#E0EBD2] flex items-center justify-center hover:scale-110 transition-transform duration-500 overflow-hidden">
                                         <img
                                             src={p.icon}
                                             alt={p.alt}
-                                            className="max-w-[80%] max-h-[80%] object-contain"
+                                            className="max-w-[75%] max-h-[75%] object-contain"
                                         />
                                     </div>
 
-                                    <p className="mt-6 text-2xl md:text-3xl font-semibold text-[#3B3B0E]">
+                                    <p className="mt-4 text-xl md:text-2xl font-semibold text-[#3B3B0E]">
                                         {p.label}
                                     </p>
 
@@ -180,7 +179,7 @@ export default function ProdukUnggul() {
                                             setShowDetail(true);
                                             setShowSimulation(false);
                                         }}
-                                        className="mt-6 px-8 py-5 rounded-full bg-[#88A825] text-white font-semibold shadow-md hover:bg-[#6e881f] transition"
+                                        className="mt-4 px-6 py-3 rounded-full bg-[#88A825] text-white font-semibold shadow-md hover:bg-[#6e881f] transition"
                                     >
                                         Jelajahi
                                     </button>
@@ -189,11 +188,11 @@ export default function ProdukUnggul() {
                         ))}
                     </div>
 
-                    {/* Tombol Navigasi */}
+                    {/* Navigasi */}
                     <button
                         onClick={handlePrev}
                         disabled={currentIndex === 0}
-                        className="absolute top-1/2 left-1 transform -translate-y-1/2 w-16 h-16 flex items-center justify-center rounded-full border-2 border-[#88A825] bg-white text-[#3B3B0E] shadow-lg z-20 disabled:opacity-40 hover:bg-[#88A825] hover:text-white hover:shadow-xl transition"
+                        className="absolute top-1/2 left-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#88A825] bg-white text-[#3B3B0E] shadow-lg z-20 disabled:opacity-40 hover:bg-[#88A825] hover:text-white transition"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -201,7 +200,7 @@ export default function ProdukUnggul() {
                             viewBox="0 0 24 24"
                             strokeWidth={2.5}
                             stroke="currentColor"
-                            className="w-8 h-8"
+                            className="w-6 h-6"
                         >
                             <path
                                 strokeLinecap="round"
@@ -210,10 +209,11 @@ export default function ProdukUnggul() {
                             />
                         </svg>
                     </button>
+
                     <button
                         onClick={handleNext}
                         disabled={currentIndex === products.length - 1}
-                        className="absolute top-1/2 right-1 transform -translate-y-1/2 w-16 h-16 flex items-center justify-center rounded-full border-2 border-[#88A825] bg-white text-[#3B3B0E] shadow-lg z-20 disabled:opacity-40 hover:bg-[#88A825] hover:text-white hover:shadow-xl transition"
+                        className="absolute top-1/2 right-1 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#88A825] bg-white text-[#3B3B0E] shadow-lg z-20 disabled:opacity-40 hover:bg-[#88A825] hover:text-white transition"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,7 @@ export default function ProdukUnggul() {
                             viewBox="0 0 24 24"
                             strokeWidth={2.5}
                             stroke="currentColor"
-                            className="w-8 h-8"
+                            className="w-6 h-6"
                         >
                             <path
                                 strokeLinecap="round"
@@ -232,20 +232,20 @@ export default function ProdukUnggul() {
                     </button>
                 </div>
 
-                {/* Konten Detail */}
+                {/* DETAIL */}
                 {showDetail && selectedProduct && (
-                    <div className="mt-12 max-w-4xl w-full bg-[#F6FFE5] rounded-3xl shadow-xl p-10 flex flex-col md:flex-row items-center gap-8">
+                    <div className="mt-10 max-w-3xl w-full bg-[#F6FFE5] rounded-3xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-6">
                         <div className="flex-1 text-left">
-                            <h3 className="text-3xl font-bold text-[#3B3B0E] mb-4">
+                            <h3 className="text-2xl font-bold text-[#3B3B0E] mb-3">
                                 {selectedProduct.label}
                             </h3>
-                            <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                            <p className="text-gray-700 text-base leading-relaxed mb-4">
                                 {selectedProduct.desc}
                             </p>
-                            <div className="flex flex-wrap gap-4">
+                            <div className="flex flex-wrap gap-3">
                                 <button
                                     onClick={() => setShowDetail(false)}
-                                    className="px-6 py-3 bg-[#A6E272] text-[#224C14] font-semibold rounded-full shadow-md hover:bg-[#94D45E] transition"
+                                    className="px-5 py-2 bg-[#A6E272] text-[#224C14] font-semibold rounded-full shadow-md hover:bg-[#94D45E] transition"
                                 >
                                     Kembali
                                 </button>
@@ -254,7 +254,7 @@ export default function ProdukUnggul() {
                                         setShowSimulation(true);
                                         setShowDetail(false);
                                     }}
-                                    className="px-6 py-3 bg-[#88A825] text-white font-semibold rounded-full shadow-md hover:bg-[#6e881f] transition"
+                                    className="px-5 py-2 bg-[#88A825] text-white font-semibold rounded-full shadow-md hover:bg-[#6e881f] transition"
                                 >
                                     Simulasi Pangan
                                 </button>
@@ -264,30 +264,29 @@ export default function ProdukUnggul() {
                             <img
                                 src={selectedProduct.icon}
                                 alt={selectedProduct.alt}
-                                className="max-w-[150px] md:max-w-[180px] object-contain"
+                                className="max-w-[120px] md:max-w-[140px] object-contain"
                             />
                         </div>
                     </div>
                 )}
 
-                {/* --- SIMULASI PANEL --- */}
+                {/* SIMULASI */}
                 {showSimulation && (
-                    <div className="mt-16 w-full max-w-3xl bg-[#F5FFE8] rounded-3xl shadow-xl p-10 text-center border border-[#BFE3A2]">
-                        <h3 className="text-3xl font-bold text-[#3B3B0E] mb-6">
+                    <div className="mt-12 w-full max-w-2xl bg-[#F5FFE8] rounded-3xl shadow-xl p-8 text-center border border-[#BFE3A2]">
+                        <h3 className="text-2xl font-bold text-[#3B3B0E] mb-4">
                             Simulasi Pangan Berkelanjutan
                         </h3>
-                        <p className="text-gray-700 mb-8">
-                            Pilih metode pertanian dan lihat bagaimana
-                            kontribusinya terhadap ketahanan pangan global.
+                        <p className="text-gray-700 mb-6 text-sm md:text-base">
+                            Pilih metode pertanian dan lihat kontribusinya.
                         </p>
 
-                        {/* Pilihan Metode */}
-                        <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-center mb-8">
+                        {/* METODE */}
+                        <div className="flex flex-wrap gap-3 justify-center mb-6">
                             {Object.keys(simulationData).map((method) => (
                                 <button
                                     key={method}
                                     onClick={() => setSelectedMethod(method)}
-                                    className={`px-6 py-3 rounded-full font-semibold transition-all ${
+                                    className={`px-4 py-2 rounded-full font-semibold text-sm transition-all ${
                                         selectedMethod === method
                                             ? "bg-[#88A825] text-white shadow-lg"
                                             : "bg-white border-2 border-[#88A825] text-[#3B3B0E] hover:bg-[#f3fbe3]"
@@ -298,42 +297,41 @@ export default function ProdukUnggul() {
                             ))}
                         </div>
 
-                        {/* Tombol Mulai */}
+                        {/* MULAI */}
                         <button
                             onClick={startSimulation}
                             disabled={!selectedMethod}
-                            className="px-10 py-4 bg-[#A6E272] text-[#224C14] font-bold rounded-full shadow-md hover:bg-[#8FD04E] transition disabled:opacity-40"
+                            className="px-8 py-3 bg-[#A6E272] text-[#224C14] font-bold rounded-full shadow-md hover:bg-[#8FD04E] transition disabled:opacity-40 text-sm"
                         >
                             Mulai Simulasi
                         </button>
 
-                        {/* Progress */}
+                        {/* PROGRESS */}
                         {progress > 0 && (
-                            <div className="w-full bg-gray-200 rounded-full h-6 mt-8">
+                            <div className="w-full bg-gray-200 rounded-full h-4 mt-6">
                                 <div
-                                    className="h-6 bg-[#88A825] rounded-full transition-all duration-500"
+                                    className="h-4 bg-[#88A825] rounded-full transition-all duration-500"
                                     style={{ width: `${progress}%` }}
                                 ></div>
                             </div>
                         )}
 
-                        {/* Hasil Simulasi */}
+                        {/* HASIL */}
                         {simulationResult && (
-                            <div className="mt-10 bg-white p-6 rounded-2xl shadow-inner text-left">
-                                <h4 className="text-2xl font-bold text-[#3B3B0E] mb-3">
+                            <div className="mt-8 bg-white p-5 rounded-2xl shadow-inner text-left">
+                                <h4 className="text-xl font-bold text-[#3B3B0E] mb-2">
                                     Dampak dari {selectedMethod}
                                 </h4>
-                                <p className="text-lg text-gray-700 mb-3">
+                                <p className="text-base text-gray-700 mb-2">
                                     {simulationResult.desc}
                                 </p>
-                                <div className="flex items-center gap-3 text-[#507A1C] font-semibold text-xl">
-                                    <Sprout className="w-6 h-6 text-[#88A825]" />
+                                <div className="flex items-center gap-2 text-[#507A1C] font-semibold text-lg">
+                                    <Sprout className="w-5 h-5 text-[#88A825]" />
                                     <span>{simulationResult.impact}</span>
                                 </div>
                             </div>
                         )}
 
-                        {/* Tombol Kembali */}
                         <button
                             onClick={() => {
                                 setShowSimulation(false);
@@ -342,12 +340,12 @@ export default function ProdukUnggul() {
                                 setSimulationResult(null);
                                 setProgress(0);
                             }}
-                            className="mt-8 px-8 py-3 bg-[#94D45E] text-[#224C14] font-semibold rounded-full shadow-md hover:bg-[#7AC84E] transition"
+                            className="mt-6 px-6 py-2 bg-[#94D45E] text-[#224C14] font-semibold rounded-full shadow-md hover:bg-[#7AC84E] transition text-sm"
                         >
                             Kembali ke Produk
                         </button>
                     </div>
-                )}  
+                )}
             </div>
         </section>
     );

@@ -144,6 +144,30 @@ const Form = () => {
 
             {/* CSS */}
             <style>{`
+
+                /* ------------------------------------------------------------------
+                   FORM SCALE — INI YANG BIKIN TAMPILANNYA LEBIH KECIL
+                ------------------------------------------------------------------ */
+                .form-container {
+                    transform: scale(0.82);
+                    transform-origin: top center;
+                }
+
+                @media (max-width: 768px) {
+                    .form-container {
+                        transform: scale(0.75);
+                        width: 100%;
+                    }
+
+                    .illustration {
+                        width: 170px !important;
+                    }
+                }
+
+                /* ------------------------------------------------------------------
+                   ORIGINAL DESIGN — TIDAK DIUBAH
+                ------------------------------------------------------------------ */
+
                 .form-section {
                     position: relative;
                     min-height: 100vh;
@@ -263,12 +287,6 @@ const Form = () => {
                     justify-content: center;
                     align-items: center;
                     color: #777;
-                }
-
-                .preview-box img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
                 }
 
                 .upload-box {

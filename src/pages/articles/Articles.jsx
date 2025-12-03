@@ -3,6 +3,7 @@ import HeroArticle from "./HeroArticle";
 import ProdukUnggul from "./ProdukUnggul";
 import BukuTerpadu from "./BukuTerpadu";
 import Article from "./Artikel";
+import Video from "./VideoPembelajaran";
 
 const Articles = () => {
   return (
@@ -11,6 +12,7 @@ const Articles = () => {
       <ProdukUnggul />
       <BukuTerpadu />
       <Article />
+      <Video/>
     </div>
   );
 };

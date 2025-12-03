@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// Komponen PostItem berada DI DALAM file ini
+/* ================== POST ITEM ================== */
 function PostItem({ post, handleComment }) {
   const [commentText, setCommentText] = useState("");
 
@@ -10,18 +10,20 @@ function PostItem({ post, handleComment }) {
   };
 
   return (
-    <div className="bg-[#EDFFCD] border border-green-200 rounded-3xl p-8 shadow-2xl">
-      <div className="flex items-center gap-3 mb-4">
-        <span className="w-5 h-5 rounded-full bg-green-600 animate-pulse"></span>
-        <p className="font-semibold text-lg text-gray-800">
+    <div className="bg-[#EDFFCD] border border-green-200 rounded-2xl p-5 shadow-lg">
+      {/* Header User */}
+      <div className="flex items-center gap-2 mb-2">
+        <span className="w-3 h-3 rounded-full bg-green-600 animate-pulse"></span>
+        <p className="font-semibold text-sm text-gray-800">
           {post.user?.name || "Anonim"}
         </p>
       </div>
 
-      <p className="text-gray-700 text-lg mb-6">{post.content}</p>
+      {/* Isi Post */}
+      <p className="text-gray-700 text-sm mb-4 leading-snug">{post.content}</p>
 
       {/* Form Komentar */}
-      <label className="block text-lg font-medium text-gray-600 mb-2">
+      <label className="block text-sm font-medium text-gray-600 mb-1">
         Balas
       </label>
 
@@ -30,43 +32,43 @@ function PostItem({ post, handleComment }) {
           placeholder="Tulis balasan..."
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          className="w-full h-28 resize-none border-none rounded-xl bg-white focus:ring-2 focus:ring-green-400 p-4 outline-none text-base"
+          className="w-full h-20 resize-none border border-green-200 rounded-lg bg-white focus:ring-1 focus:ring-green-400 p-2 text-sm outline-none"
         />
         <button
           type="submit"
-          className="mt-2 px-4 py-2 bg-green-500 text-white rounded-lg"
+          className="mt-2 px-3 py-1.5 bg-green-500 text-white text-sm rounded-md"
         >
           Balas
         </button>
       </form>
 
       {/* List Komentar */}
-      <div className="mt-4 space-y-2">
+      <div className="mt-3 space-y-1.5">
         {post.comments.length > 0 ? (
           post.comments.map((c) => (
             <div
               key={c.id}
-              className="p-3 rounded-xl bg-white text-gray-700 shadow"
+              className="p-2 rounded-lg bg-white text-gray-700 text-sm shadow"
             >
               <strong>{c.user?.name || "Anonim"}:</strong> {c.content}
             </div>
           ))
         ) : (
-          <p className="text-gray-500 italic">Belum ada komentar</p>
+          <p className="text-gray-500 italic text-xs">Belum ada komentar</p>
         )}
       </div>
     </div>
   );
 }
 
+/* ================== MAIN FORUM ================== */
 export default function ForumKomunitas() {
   const [posts, setPosts] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(2);
+  const [visibleCount, setVisibleCount] = useState(3);
   const [newPost, setNewPost] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!newPost.trim()) return;
 
     const post = {
@@ -82,57 +84,56 @@ export default function ForumKomunitas() {
 
   const handleComment = (e, postId, text, setText) => {
     e.preventDefault();
-
     if (!text.trim()) return;
 
-    const updated = posts.map((p) => {
-      if (p.id === postId) {
-        return {
-          ...p,
-          comments: [
-            ...p.comments,
-            {
-              id: Date.now(),
-              user: { name: "User" },
-              content: text,
-            },
-          ],
-        };
-      }
-      return p;
-    });
+    const updated = posts.map((p) =>
+      p.id === postId
+        ? {
+            ...p,
+            comments: [
+              ...p.comments,
+              {
+                id: Date.now(),
+                user: { name: "User" },
+                content: text,
+              },
+            ],
+          }
+        : p
+    );
 
     setPosts(updated);
     setText("");
   };
 
-  const loadMore = () => setVisibleCount((prev) => prev + 2);
+  const loadMore = () => setVisibleCount((prev) => prev + 3);
 
   return (
     <section
       id="forum-komunitas"
-      className="min-h-screen flex flex-col items-center w-full px-6 pt-16 bg-[#FCFFEC] relative pb-60"
+      className="min-h-screen flex flex-col items-center w-full px-4 pt-10 bg-[#FCFFEC] relative pb-40"
     >
-      <h2 className="text-6xl md:text-7xl font-bold text-center text-[#3B3B0E] mb-12 tracking-wide">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-[#3B3B0E] mb-6">
         Forum Komunitas
       </h2>
 
-      <div className="max-w-5xl w-full space-y-6 z-10">
+      <div className="max-w-3xl w-full space-y-4 z-10">
         {/* Form Posting */}
         <form
           onSubmit={handleSubmit}
-          className="bg-[#EDFFCD] border border-green-200 rounded-3xl p-8 shadow-2xl"
+          className="bg-[#EDFFCD] border border-green-200 rounded-2xl p-5 shadow-lg"
         >
           <textarea
             placeholder="Tulis sesuatu..."
             value={newPost}
             onChange={(e) => setNewPost(e.target.value)}
-            className="w-full h-28 resize-none border-none rounded-xl bg-white focus:ring-2 focus:ring-green-400 p-4 outline-none text-base"
+            className="w-full h-20 resize-none border border-green-200 rounded-lg bg-white focus:ring-1 focus:ring-green-400 p-3 text-sm outline-none"
           />
-          <div className="flex justify-end mt-4">
+
+          <div className="flex justify-end mt-3">
             <button
               type="submit"
-              className="px-6 py-3 rounded-xl bg-[#A6E272] text-[#224C14] hover:bg-[#94D45E] transition"
+              className="px-4 py-2 rounded-lg bg-[#A6E272] text-[#224C14] text-sm hover:bg-[#94D45E]"
             >
               Kirim
             </button>
@@ -140,16 +141,20 @@ export default function ForumKomunitas() {
         </form>
 
         {/* List Posting */}
-        <div className="max-h-[600px] overflow-y-auto space-y-6">
+        <div className="max-h-[500px] overflow-y-auto space-y-4 pr-1">
           {posts.slice(0, visibleCount).map((post) => (
-            <PostItem key={post.id} post={post} handleComment={handleComment} />
+            <PostItem
+              key={post.id}
+              post={post}
+              handleComment={handleComment}
+            />
           ))}
 
           {visibleCount < posts.length && (
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-3">
               <button
                 onClick={loadMore}
-                className="px-6 py-3 rounded-xl bg-green-500 text-white hover:bg-green-600"
+                className="px-5 py-2 rounded-lg bg-green-500 text-white text-sm hover:bg-green-600"
               >
                 Lihat Post Lainnya
               </button>

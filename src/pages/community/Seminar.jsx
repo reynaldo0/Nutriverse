@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 export default function Seminar() {
-  // ------- DUMMY DATA -------
   const [seminars] = useState([
     {
       id: 1,
@@ -29,26 +28,26 @@ export default function Seminar() {
 
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [offsetX, setOffsetX] = useState(0);
-  const sectionRef = useRef(null);
   const animationRef = useRef(null);
   const currentXRef = useRef(0);
 
-  // PARALLAX EFFECT
+  /* ----------- PARALLAX GRASS (Diperkecil) ------------ */
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.body.scrollHeight - window.innerHeight;
-      const ratio = docHeight > 0 ? scrollTop / docHeight : 0;
+      const ratio = docHeight ? scrollTop / docHeight : 0;
 
       const isMobile = window.innerWidth < 768;
-      const parallaxFactor = isMobile ? 300 : 600;
+      const parallaxFactor = isMobile ? 80 : 150; // <<< DIPERKECIL LAGI
+
       const targetX = ratio * parallaxFactor;
 
       const animate = () => {
-        currentXRef.current += (targetX - currentXRef.current) * 0.25;
+        currentXRef.current += (targetX - currentXRef.current) * 0.18;
         setOffsetX(currentXRef.current);
 
-        if (Math.abs(targetX - currentXRef.current) > 0.9) {
+        if (Math.abs(targetX - currentXRef.current) > 0.3) {
           animationRef.current = requestAnimationFrame(animate);
         }
       };
@@ -68,50 +67,50 @@ export default function Seminar() {
 
   return (
     <section
-      ref={sectionRef}
-      className="relative flex flex-col items-center justify-start px-6 pt-16 md:pt-24 pb-28 min-h-screen bg-gradient-to-b from-[#FCFFEC] via-[#C4E196] to-[#90C444] overflow-visible"
+      className="relative flex flex-col items-center px-3 pt-10 pb-14 min-h-[70vh]
+      bg-gradient-to-b from-[#FCFFEC] via-[#C4E196] to-[#90C444]"
     >
       {/* Background */}
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 bg-[url('/background/herokomunitas.png')] bg-cover bg-center blur-sm"
+          className="absolute inset-0 bg-[url('/background/herokomunitas.png')] bg-cover bg-center blur-[1px]"
           style={{ backgroundAttachment: "fixed" }}
         />
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
       </div>
 
-      <h2 className="text-5xl md:text-6xl font-extrabold text-[#3B3B0E] text-center mb-14 z-10">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-[#3B3B0E] text-center mb-6 z-10">
         Seminar
       </h2>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl w-full z-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full z-10">
         {seminars.map((item) => (
           <div
             key={item.id}
-            className="rounded-3xl overflow-hidden shadow-[0_8px_20px_rgba(0,0,0,0.08)] bg-[#F7FFF0] border border-[#E0F0C2] transition-transform duration-500 hover:scale-[1.02]"
+            className="rounded-xl overflow-hidden shadow-[0_4px_10px_rgba(0,0,0,0.08)]
+            bg-[#F7FFF0] border border-[#E0F0C2] transition-transform duration-300 hover:scale-[1.01]"
           >
-            <div className="bg-[#3B3B0E] text-white font-semibold text-lg md:text-[17px] px-6 py-3 rounded-t-3xl">
+            <div className="bg-[#3B3B0E] text-white font-semibold text-sm md:text-base px-4 py-2">
               {item.title}
             </div>
-            <div className="p-6 text-gray-800 text-[15px] leading-relaxed space-y-3">
+
+            <div className="p-4 text-gray-800 text-xs md:text-sm leading-relaxed space-y-1.5">
               <p>
-                <span className="font-semibold text-[#3B3B0E]">Tanggal :</span>{" "}
-                {item.date}
+                <span className="font-semibold text-[#3B3B0E]">Tanggal :</span> {item.date}
               </p>
               <p>
-                <span className="font-semibold text-[#3B3B0E]">Lokasi :</span>{" "}
-                {item.location}
+                <span className="font-semibold text-[#3B3B0E]">Lokasi :</span> {item.location}
               </p>
               <p className="text-justify">{item.description}</p>
-              <div className="flex justify-start">
-                <button
-                  onClick={() => setSelectedEvent(item)}
-                  className="mt-4 px-6 py-2 rounded-full bg-[#A6E272] text-[#224C14] font-semibold hover:bg-[#94D45E] transition-colors"
-                >
-                  Daftar Sekarang
-                </button>
-              </div>
+
+              <button
+                onClick={() => setSelectedEvent(item)}
+                className="mt-2 px-4 py-1.5 rounded-full text-xs bg-[#A6E272] text-[#224C14] 
+                font-semibold hover:bg-[#94D45E] transition-colors"
+              >
+                Daftar Sekarang
+              </button>
             </div>
           </div>
         ))}
@@ -123,17 +122,15 @@ export default function Seminar() {
       )}
 
       {/* Parallax Grass */}
-      <div className="w-full overflow-visible pointer-events-none">
+      <div className="w-full pointer-events-none">
         <img
           src="/icon/rumput-kiri.png"
-          alt="rumput kiri"
-          className="absolute bottom-0 left-0 w-2/3 md:w-1/2 object-contain"
+          className="absolute bottom-0 left-0 w-1/3 md:w-1/4 opacity-80"
           style={{ transform: `translateX(-${offsetX}px)` }}
         />
         <img
           src="/icon/rumput-kanan.png"
-          alt="rumput kanan"
-          className="absolute bottom-0 right-0 w-2/3 md:w-1/2 object-contain"
+          className="absolute bottom-0 right-0 w-1/3 md:w-1/4 opacity-80"
           style={{ transform: `translateX(${offsetX}px)` }}
         />
       </div>
@@ -141,27 +138,27 @@ export default function Seminar() {
   );
 }
 
-/* ========== MODAL ========== */
+/* ================= MODAL ================= */
 function Modal({ event, onClose }) {
   return createPortal(
     <div
       id="overlay"
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999]"
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-[9999]"
       onClick={(e) => e.target.id === "overlay" && onClose()}
     >
-      <div className="w-full max-w-2xl relative rounded-3xl overflow-hidden shadow-2xl">
-        <div className="bg-[#3B3B0E] text-white font-semibold text-lg md:text-xl px-6 py-3 relative">
-          Daftar untuk {event.title}
+      <div className="w-full max-w-sm rounded-xl bg-white shadow-xl overflow-hidden">
+        <div className="bg-[#3B3B0E] text-white font-semibold text-base px-4 py-2 relative">
+          Daftar — {event.title}
           <button
             onClick={onClose}
-            className="absolute right-6 top-2 text-white text-3xl hover:text-gray-200 transition"
+            className="absolute right-4 top-1 text-white text-2xl"
           >
-            &times;
+            ×
           </button>
         </div>
 
-        <div className="bg-[#F7FFF0] p-8">
-          <RegistrationForm event={event} onClose={onClose} />
+        <div className="bg-[#F7FFF0] p-4">
+          <RegistrationForm onClose={onClose} />
         </div>
       </div>
     </div>,
@@ -169,7 +166,7 @@ function Modal({ event, onClose }) {
   );
 }
 
-/* ========== FORM PENDAFTARAN (DUMMY) ========== */
+/* ================= FORM ================= */
 function RegistrationForm({ onClose }) {
   const [form, setForm] = useState({
     name: "",
@@ -182,60 +179,56 @@ function RegistrationForm({ onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Simulasi "success"
     setSubmitted(true);
 
     setTimeout(() => {
       setSubmitted(false);
-      onClose(); // tutup modal
-    }, 1500);
+      onClose();
+    }, 1000);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-5 text-gray-700 text-base md:text-lg font-medium"
-    >
+    <form onSubmit={handleSubmit} className="space-y-3 text-xs text-gray-700">
       <input
         type="text"
+        placeholder="Nama Lengkap"
         value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
-        placeholder="Nama Lengkap"
-        className="w-full rounded-xl border border-[#E0E0D1] px-5 py-3 shadow-sm"
+        className="w-full rounded-lg border px-3 py-1.5 shadow-sm"
         required
       />
 
       <input
         type="email"
+        placeholder="Email"
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
-        placeholder="Email"
-        className="w-full rounded-xl border border-[#E0E0D1] px-5 py-3 shadow-sm"
+        className="w-full rounded-lg border px-3 py-1.5 shadow-sm"
         required
       />
 
       <input
         type="tel"
+        placeholder="Nomor Telepon"
         value={form.phone}
         onChange={(e) => setForm({ ...form, phone: e.target.value })}
-        placeholder="Nomor Telepon"
-        className="w-full rounded-xl border border-[#E0E0D1] px-5 py-3 shadow-sm"
+        className="w-full rounded-lg border px-3 py-1.5 shadow-sm"
         required
       />
 
       <textarea
+        placeholder="Catatan (Opsional)"
         value={form.notes}
         onChange={(e) => setForm({ ...form, notes: e.target.value })}
-        placeholder="Catatan (Opsional)"
-        className="w-full rounded-xl border border-[#E0E0D1] px-5 py-3 shadow-sm resize-none"
+        className="w-full rounded-lg border px-3 py-1.5 shadow-sm h-16 resize-none"
       />
 
       <button
         type="submit"
-        className="w-full rounded-xl bg-[#A6E272] text-[#224C14] font-semibold py-3 hover:bg-[#94D45E] transition-all shadow-md"
+        className="w-full rounded-lg bg-[#A6E272] text-[#224C14] font-semibold py-2 text-xs
+        hover:bg-[#94D45E] transition-all shadow"
       >
-        {submitted ? "Mendaftar..." : "Daftar Sekarang"}
+        {submitted ? "Mendaftar..." : "Daftar"}
       </button>
     </form>
   );

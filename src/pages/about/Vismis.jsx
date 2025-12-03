@@ -25,9 +25,14 @@ export default function VisiMisi() {
       minHeight: "100vh",
       backgroundColor: "#FCFFEC",
       fontFamily: "sans-serif",
-      padding: "5rem 1.5rem 4rem 1.5rem",
+      padding: "4rem 1rem 3rem 1rem",
       overflow: "hidden",
+
+      // 🔥 SCALE UNTUK PERKECILKAN TAMPAK KESELURUHAN
+      transform: "scale(0.85)",
+      transformOrigin: "top center",
     },
+
     background: {
       position: "absolute",
       inset: 0,
@@ -37,6 +42,7 @@ export default function VisiMisi() {
       opacity: 0.5,
       backgroundAttachment: "fixed",
     },
+
     title: {
       fontSize: "2.5rem",
       fontWeight: "800",
@@ -48,6 +54,7 @@ export default function VisiMisi() {
       opacity: animateText ? 1 : 0,
       transform: animateText ? "translateY(0)" : "translateY(-2rem)",
     },
+
     card: {
       position: "relative",
       background: "rgba(255,255,255,0.7)",
@@ -55,11 +62,11 @@ export default function VisiMisi() {
       borderRadius: "2rem",
       boxShadow: "0 25px 50px rgba(0,0,0,0.1)",
       border: "1px solid rgba(144,196,68,0.3)",
-      padding: "3rem",
+      padding: "2.5rem",
       display: "flex",
       flexDirection: "column",
       gap: "2.5rem",
-      maxWidth: "80rem",
+      maxWidth: "70rem",
       width: "100%",
       zIndex: 10,
       transition: "all 0.7s ease-out",
@@ -68,11 +75,13 @@ export default function VisiMisi() {
         ? "translateY(0) scale(1)"
         : "translateY(2rem) scale(0.95)",
     },
+
     tabs: {
       display: "flex",
       justifyContent: "center",
       gap: "1.5rem",
     },
+
     tabButton: (isActive) => ({
       padding: "0.75rem 2rem",
       borderRadius: "9999px",
@@ -84,12 +93,14 @@ export default function VisiMisi() {
       boxShadow: isActive ? "0 4px 6px rgba(0,0,0,0.1)" : "none",
       cursor: "pointer",
     }),
+
     content: {
       color: "#2C2C2C",
       fontSize: "1.125rem",
       lineHeight: 1.8,
       transition: "all 0.7s ease-out",
     },
+
     paragraph: {
       fontStyle: "italic",
       textAlign: "justify",
@@ -97,6 +108,7 @@ export default function VisiMisi() {
       transform: animateText ? "translateX(0)" : "translateX(-2rem)",
       transition: "all 0.7s ease-out",
     },
+
     list: {
       listStyle: "none",
       textAlign: "justify",
@@ -107,16 +119,19 @@ export default function VisiMisi() {
       transform: animateText ? "translateX(0)" : "translateX(2rem)",
       transition: "all 0.7s ease-out",
     },
+
     listItem: {
       display: "flex",
       alignItems: "flex-start",
       gap: "1rem",
     },
+
     listNumber: {
       color: "#90C444",
       fontWeight: "bold",
       fontSize: "1.25rem",
     },
+
     highlight: {
       color: "#90C444",
       fontWeight: 600,
@@ -127,6 +142,7 @@ export default function VisiMisi() {
     <div style={styles.container}>
       <div style={styles.background} />
       <h1 style={styles.title}>Visi dan Misi</h1>
+
       <div style={styles.card}>
         {/* Tabs */}
         <div style={styles.tabs}>
@@ -145,8 +161,9 @@ export default function VisiMisi() {
         <div style={styles.content}>
           {activeTab === "visi" ? (
             <p style={styles.paragraph}>
-              Menjadi <span style={styles.highlight}>platform edukasi digital</span>{" "}
-              yang inovatif dan terpercaya dalam memberikan pengetahuan praktis dan ilmiah
+              Menjadi{" "}
+              <span style={styles.highlight}>platform edukasi digital</span> yang
+              inovatif dan terpercaya dalam memberikan pengetahuan praktis dan ilmiah
               tentang cara menanam tumbuhan yang baik, benar, dan berkelanjutan, guna
               mewujudkan masyarakat sehat, mandiri pangan, serta berkontribusi pada
               tercapainya <span style={styles.highlight}>Zero Hunger</span>.
@@ -163,9 +180,7 @@ export default function VisiMisi() {
                 <li key={idx} style={styles.listItem}>
                   <span style={styles.listNumber}>{idx + 1}.</span>
                   <p>
-                    <span style={styles.highlight}>
-                      {text.split(" ")[0]}
-                    </span>{" "}
+                    <span style={styles.highlight}>{text.split(" ")[0]}</span>{" "}
                     {text.split(" ").slice(1).join(" ")}
                   </p>
                 </li>

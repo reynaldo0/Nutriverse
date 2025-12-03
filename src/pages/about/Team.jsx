@@ -27,8 +27,9 @@ export default function TeamNutriverse() {
       img: "/team/zhafirah.jpg",
       socials: {
         github: "https://github.com/naswaaaa29",
-        instagram: "https://www.instagram.com/pirnswa?igsh=MW94a3hwYnQ1a2VxdQ==",
-        linkedin: "https://www.linkedin.com/in/zhafirah-naswa-naufariza-045771353/",
+        instagram: "https://www.instagram.com/pirnswa",
+        linkedin:
+          "https://www.linkedin.com/in/zhafirah-naswa-naufariza-045771353/",
       },
     },
   ];
@@ -46,22 +47,26 @@ export default function TeamNutriverse() {
           <div
             key={member.id}
             className="team-card"
-            style={{ animationDelay: `${i * 0.3}s` }}
+            style={{ animationDelay: `${i * 0.25}s` }}
           >
             <div className="img-wrapper">
               <img src={member.img} alt={member.name} />
               <div className="overlay-glow" />
             </div>
+
             <h3>{member.name}</h3>
             <p>{member.role}</p>
+
             <div className="social-icons">
-              <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="github">
+              <a href={member.socials.github} target="_blank" rel="noreferrer">
                 <FaGithub />
               </a>
-              <a href={member.socials.instagram} target="_blank" rel="noopener noreferrer" className="instagram">
+
+              <a href={member.socials.instagram} target="_blank" rel="noreferrer">
                 <FaInstagram />
               </a>
-              <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="linkedin">
+
+              <a href={member.socials.linkedin} target="_blank" rel="noreferrer">
                 <FaLinkedinIn />
               </a>
             </div>
@@ -72,139 +77,137 @@ export default function TeamNutriverse() {
       <style>{`
         .team-section {
           min-height: 100vh;
+          padding: 4rem 1.25rem 6rem;
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          width: 100%;
-          padding: 5rem 1.5rem 10rem;
-          position: relative;
           background: linear-gradient(135deg, #f0fff4, #e1f5e7);
+          position: relative;
           overflow: hidden;
         }
-        .team-section .background {
+
+        .background {
           position: absolute;
           inset: 0;
           background-image: url('/background/heroabout.png');
           background-size: cover;
           background-position: center;
-          opacity: 0.25;
-          z-index: 0;
+          opacity: 0.22;
           filter: blur(1px);
         }
+
         .team-title {
+          font-size: 2.2rem;
           font-weight: 800;
-          text-align: center;
-          margin-bottom: 3rem;
           color: #1f3c00;
-          font-size: 3rem;
+          text-align: center;
+          margin-bottom: 2rem;
           letter-spacing: 1px;
-          text-shadow: 0 2px 6px rgba(0,0,0,0.1);
-          transition: all 0.7s ease-out;
-          transform: translateY(-2rem);
+          transition: 0.7s ease;
           opacity: 0;
+          transform: translateY(-1rem);
         }
         .team-title span { color: #90C444; }
-        .team-title.animate { transform: translateY(0); opacity: 1; }
+        .team-title.animate { opacity: 1; transform: translateY(0); }
 
         .team-grid {
-          max-width: 60rem;
           width: 100%;
+          max-width: 45rem;
           display: grid;
-          gap: 3rem;
+          gap: 2rem;
           grid-template-columns: 1fr;
           justify-items: center;
-          transition: all 0.7s ease-out;
-          transform: translateY(2rem);
           opacity: 0;
+          transform: translateY(1.5rem);
+          transition: 0.7s ease;
         }
-        @media (min-width: 640px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
-        .team-grid.animate { transform: translateY(0); opacity: 1; }
+        @media (min-width: 640px) {
+          .team-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .team-grid.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
 
         .team-card {
-          position: relative;
           background: rgba(255,255,255,0.85);
-          backdrop-filter: blur(16px);
-          border-radius: 2.5rem;
-          padding: 2.5rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+          backdrop-filter: blur(12px);
+          padding: 1.8rem;
+          border-radius: 1.8rem;
+          box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+          text-align: center;
           transform: scale(0.95);
           opacity: 0;
-          animation: fadeInUp 0.8s ease forwards;
-          transition: transform 0.4s, box-shadow 0.4s;
+          animation: fadeInUp 0.7s ease forwards;
+          transition: 0.35s ease;
+          width: 100%;
+          max-width: 18rem;
         }
         .team-card:hover {
-          transform: scale(1.08);
-          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+          transform: scale(1.04);
+          box-shadow: 0 18px 36px rgba(0,0,0,0.12);
         }
 
+        /* === FIX UTAMA: FOTO 100% CENTER === */
         .img-wrapper {
-          position: relative;
-          width: 12rem;
-          height: 13rem;
-          border-radius: 2rem;
+          width: 9rem;
+          height: 10rem;
+          border-radius: 1.6rem;
           overflow: hidden;
-          margin-bottom: 1.25rem;
-          flex-shrink: 0;
+          margin-bottom: 1rem;
+          position: relative;
+          margin-left: auto;
+          margin-right: auto; /* FOTO BENAR2 DI TENGAH */
         }
+
         .img-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s;
+          transition: 0.4s;
         }
-        .img-wrapper:hover img { transform: scale(1.08); }
+        .img-wrapper:hover img { transform: scale(1.07); }
+
         .overlay-glow {
           position: absolute;
           inset: 0;
           background: linear-gradient(to top, rgba(144,196,68,0.25), transparent);
           opacity: 0;
-          transition: opacity 0.5s;
+          transition: 0.4s;
         }
         .img-wrapper:hover .overlay-glow { opacity: 1; }
 
         .team-card h3 {
+          font-size: 1.3rem;
           font-weight: 700;
-          font-size: 1.75rem;
           color: #1f3c00;
-          transition: color 0.3s;
-          margin-bottom: 0.25rem;
+          margin-bottom: 0.2rem;
         }
-        .team-card:hover h3 { color: #90C444; }
 
         .team-card p {
-          font-size: 1.125rem;
+          font-size: 0.95rem;
           color: #4B5563;
+          margin-bottom: 0.7rem;
           font-style: italic;
-          margin-bottom: 0.75rem;
         }
 
         .social-icons {
           display: flex;
-          gap: 1rem;
-          margin-top: 0.5rem;
-          font-size: 1.25rem;
+          gap: 0.7rem;
+          justify-content: center;
+          font-size: 1.1rem;
         }
         .social-icons a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.75rem;
+          background: #d9f99d;
+          padding: 0.55rem;
           border-radius: 50%;
-          background-color: #d9f99d;
           color: #166534;
-          transition: all 0.3s;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          transition: 0.25s;
         }
-        .social-icons a.github:hover { background-color: #111; color: #fff; }
-        .social-icons a.instagram:hover { background-color: #e1306c; color: #fff; }
-        .social-icons a.linkedin:hover { background-color: #0077b5; color: #fff; }
+        .social-icons a:hover { transform: scale(1.15); }
 
         @keyframes fadeInUp {
-          0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+          0% { opacity: 0; transform: translateY(22px) scale(0.95); }
           100% { opacity: 1; transform: translateY(0) scale(1); }
         }
       `}</style>

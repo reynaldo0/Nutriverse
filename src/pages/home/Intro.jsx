@@ -1,4 +1,3 @@
-// Pages/Home/Nuti.jsx
 import { useEffect, useState } from "react";
 
 export default function NutiIntro() {
@@ -13,17 +12,17 @@ export default function NutiIntro() {
   return (
     <section
       id="nuti-section"
-      className="min-h-screen flex flex-col items-center justify-center w-full px-6 pt-16 pb-12 relative bg-[#FCFFEC]"
+      className="min-h-[80vh] flex flex-col items-center justify-center w-full px-6 pt-10 pb-10 relative bg-[#FCFFEC]"
     >
       {/* Background */}
       <div
-        className="absolute inset-0 bg-[url('/background/herohome.png')] bg-cover bg-center opacity-50"
+        className="absolute inset-0 bg-[url('/background/herohome.png')] bg-cover bg-center opacity-40"
         style={{ backgroundAttachment: "fixed" }}
       />
 
       {/* Judul */}
       <h1
-        className={`text-6xl md:text-7xl font-extrabold text-[#3B3B0E] mb-12 tracking-wide transition-all duration-700 ease-out ${
+        className={`text-4xl md:text-5xl font-extrabold text-[#3B3B0E] mb-8 tracking-wide transition-all duration-700 ease-out ${
           animateText ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-8"
         }`}
       >
@@ -32,7 +31,7 @@ export default function NutiIntro() {
 
       {/* Card */}
       <div
-        className={`bg-[#F0FCD7] rounded-3xl shadow-2xl border-2 border-green-200 p-12 md:p-16 flex flex-col md:flex-row items-center gap-14 max-w-5xl transition-all duration-700 ease-out ${
+        className={`bg-[#F0FCD7] rounded-3xl shadow-2xl border-2 border-green-200 p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 max-w-4xl transition-all duration-700 ease-out ${
           animateText
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-8 scale-90"
@@ -40,7 +39,7 @@ export default function NutiIntro() {
       >
         {/* Teks */}
         <p
-          className={`text-[#2C2C2C] text-2xl md:text-3xl leading-relaxed transition-all duration-700 ease-out ${
+          className={`text-[#2C2C2C] text-xl md:text-2xl leading-relaxed transition-all duration-700 ease-out ${
             animateText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
           }`}
         >
@@ -58,33 +57,27 @@ export default function NutiIntro() {
           <img
             src="/icon/nuti.png"
             alt="Nuti Mascot"
-            className={`w-56 md:w-full drop-shadow-2xl transition-all duration-700 ease-out ${
+            className={`w-40 md:w-60 drop-shadow-2xl transition-all duration-700 ease-out ${
               animateImage
                 ? "opacity-100 scale-100 rotate-0 animate-float"
                 : "opacity-0 scale-0 -rotate-12"
             } group-hover:scale-110 group-hover:rotate-6`}
           />
 
-          {/* Dekorasi animasi */}
-          <span className="absolute -top-6 -left-6 w-8 h-8 rounded-full bg-green-300 opacity-70 animate-ping"></span>
-          <span className="absolute top-10 -right-8 w-6 h-6 rounded-full bg-yellow-300 opacity-70 animate-bounce"></span>
-          <span className="absolute -bottom-6 left-12 w-10 h-10 rounded-full bg-green-500 opacity-60 animate-pulse"></span>
+          {/* Dekorasi lebih kecil */}
+          <span className="absolute -top-4 -left-4 w-6 h-6 rounded-full bg-green-300 opacity-70 animate-ping"></span>
+          <span className="absolute top-6 -right-6 w-4 h-4 rounded-full bg-yellow-300 opacity-70 animate-bounce"></span>
+          <span className="absolute -bottom-4 left-8 w-7 h-7 rounded-full bg-green-500 opacity-60 animate-pulse"></span>
         </div>
       </div>
 
-      {/* Style Animasi Custom (React biasa, bukan style jsx) */}
+      {/* Style Animasi Custom */}
       <style>
         {`
           @keyframes float {
-            0% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-10px);
-            }
-            100% {
-              transform: translateY(0px);
-            }
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
           }
 
           .animate-float {
