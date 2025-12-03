@@ -90,29 +90,28 @@ export default function GameTree({ items = [] }) {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center w-full px-4 pt-16 pb-20 relative bg-gradient-to-b from-[#F0FFF0] via-[#C4E196] to-[#A0D468]">
-      <div className="absolute inset-0 blur bg-[url('/background/herotree.png')] bg-cover bg-center opacity-40" />
+    <section className="min-h-screen flex flex-col items-center justify-center w-full px-4 pt-16 pb-20 relative bg-gradient-to-b from-[#FCFFEC] via-[#C4E196] to-[#90C444]">
+      <div className="absolute inset-0 blur bg-[url('/background/herohome.png')] bg-cover bg-center opacity-40" />
 
       <h1 className="text-4xl md:text-5xl font-extrabold text-[#3A2E17] text-center mb-4">
         Permainan NutriTree
       </h1>
-
       <p className="text-center text-lg md:text-xl font-bold text-white mb-6 bg-[#3A2E17] py-2 px-6 rounded-full shadow-lg">
-        Pilih bibit pohon, lalu jawab kuis nutrisi
+        Pilih Buah/Sayur dari pohon, lalu jawab kuisnya
       </p>
 
       <div className="bg-[#F0FCD7] rounded-2xl shadow-2xl border-2 border-green-200 p-6 md:p-10 flex flex-col md:flex-row items-center gap-6 max-w-5xl w-full z-10">
+        {/* Pohon */}
         <div
           className="relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center z-10"
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
         >
           <img
-            src="/gamesicon/piring.png"
-            alt="Piring"
+            src="/gamesicon/pohon.png"
+            alt="Pohon"
             className="absolute inset-0 w-full h-full object-contain"
           />
-
           {treeItem ? (
             <div className="flex flex-col items-center z-10">
               <img src={treeItem.img} className="w-20 h-20 object-contain" />
@@ -121,9 +120,9 @@ export default function GameTree({ items = [] }) {
               </div>
             </div>
           ) : (
-            <p className="absolute text-gray-600 text-center text-base z-10 flex flex-col items-center gap-1">
+            <p className="absolute text-gray-600 text-center text-base flex flex-col items-center gap-1">
               <Utensils className="text-2xl text-green-800" />
-              Tarik bibit pohon
+              Tarik buah/sayur
             </p>
           )}
         </div>
@@ -132,39 +131,21 @@ export default function GameTree({ items = [] }) {
         <div className="flex-1 w-full z-10">
           {treeItem && currentQuestion ? (
             <div className="bg-white p-6 rounded-2xl shadow-md w-full">
-              <p className="text-gray-900 mb-4 text-lg font-semibold">
-                {currentQuestion.question}
-              </p>
-
+              <p className="text-gray-900 mb-4 text-lg font-semibold">{currentQuestion.question}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {currentQuestion.options.map((opt, idx) => {
                   const isSelected = selectedAnswer === opt;
                   const isCorrect = opt === currentQuestion.answer;
 
-                  let btnClass =
-                    "px-4 py-3 rounded-xl border font-semibold text-base transition-all ";
-
-                  if (!questionLocked) {
-                    btnClass += "bg-gray-100 border-gray-300 hover:bg-green-50";
-                  } else {
-                    if (isSelected) {
-                      btnClass += isCorrect
-                        ? "bg-green-200 border-green-500 text-green-800"
-                        : "bg-red-200 border-red-500 text-red-700";
-                    } else {
-                      btnClass += isCorrect
-                        ? "bg-green-100 border-green-300 text-green-800"
-                        : "bg-gray-100 border-gray-300 text-gray-600 opacity-80";
-                    }
+                  let btnClass = "px-4 py-3 rounded-xl border font-semibold text-base transition-all ";
+                  if (!questionLocked) btnClass += "bg-gray-100 border-gray-300 hover:bg-green-50";
+                  else {
+                    if (isSelected) btnClass += isCorrect ? "bg-green-200 border-green-500 text-green-800" : "bg-red-200 border-red-500 text-red-700";
+                    else btnClass += isCorrect ? "bg-green-100 border-green-300 text-green-800" : "bg-gray-100 border-gray-300 text-gray-600 opacity-80";
                   }
 
                   return (
-                    <button
-                      key={idx}
-                      onClick={() => handleAnswer(opt)}
-                      disabled={questionLocked}
-                      className={btnClass}
-                    >
+                    <button key={idx} onClick={() => handleAnswer(opt)} disabled={questionLocked} className={btnClass}>
                       {opt}
                     </button>
                   );
@@ -172,24 +153,17 @@ export default function GameTree({ items = [] }) {
               </div>
 
               <div className="flex items-center gap-3 mt-5">
-                <button
-                  onClick={handleClearTree}
-                  className="px-4 py-2 bg-yellow-300 text-gray-900 font-bold rounded-lg shadow hover:bg-yellow-400 text-base flex items-center gap-2"
-                >
+                <button onClick={handleClearTree} className="px-4 py-2 bg-yellow-300 text-gray-900 font-bold rounded-lg shadow hover:bg-yellow-400 text-base flex items-center gap-2">
                   <RotateCcw size={18} /> Ganti
                 </button>
-
-                <button
-                  onClick={handleNextQuestion}
-                  className="px-4 py-2 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 text-base flex items-center gap-2"
-                >
+                <button onClick={handleNextQuestion} className="px-4 py-2 bg-green-500 text-white font-bold rounded-lg shadow hover:bg-green-600 text-base flex items-center gap-2">
                   <ArrowRight size={18} /> Next
                 </button>
               </div>
             </div>
           ) : (
             <div className="bg-white/80 p-6 rounded-2xl shadow-md text-center text-gray-700 text-base font-medium">
-              Tarik bibit pohon dari daftar di bawah ke piring!
+              Tarik buah/sayur dari daftar di bawah ke pohon!
             </div>
           )}
         </div>
@@ -212,7 +186,6 @@ export default function GameTree({ items = [] }) {
         </div>
       </div>
 
-      {/* Score */}
       <div className="bg-green-700 text-white px-6 py-3 rounded-xl shadow-md font-extrabold text-xl mt-6 flex items-center gap-2">
         <Star className="text-yellow-300" fill="yellow" /> {points} Poin
       </div>

@@ -1,11 +1,54 @@
 import { ArrowRight } from "lucide-react";
-import { articles } from "../../data/articles";
+import React from "react";
+
+export const articles = [
+  {
+    id: 1,
+    title: "Nutrisi Penting Untuk Anak",
+    desc: "Makanan sehat sangat penting untuk pertumbuhan anak. Pastikan mereka mendapatkan vitamin dan mineral yang cukup setiap hari.",
+    slug: "nutrisi-penting-anak",
+    img: "article1.png",
+    user: { name: "Admin" },
+    created_at: "2025-12-03T10:00:00Z",
+    tag: "Kesehatan Anak",
+  },
+  {
+    id: 2,
+    title: "Tips Memilih Buah Segar",
+    desc: "Buah segar adalah sumber vitamin alami. Pilih buah yang matang dan simpan dengan benar agar tetap fresh.",
+    slug: "tips-buah-segar",
+    img: "article2.png",
+    user: { name: "Admin" },
+    created_at: "2025-12-01T09:00:00Z",
+    tag: "Gizi",
+  },
+  {
+    id: 3,
+    title: "Manfaat Sayuran Hijau",
+    desc: "Sayuran hijau kaya akan vitamin, serat, dan antioksidan. Konsumsi secara rutin untuk menjaga kesehatan tubuh.",
+    slug: "manfaat-sayuran-hijau",
+    img: "article3.png",
+    user: { name: "Admin" },
+    created_at: "2025-11-30T12:00:00Z",
+    tag: "Gizi",
+  },
+  {
+    id: 4,
+    title: "Makanan Sehat Untuk Otak",
+    desc: "Beberapa jenis makanan dapat meningkatkan fungsi otak, seperti kacang-kacangan, ikan, dan sayuran hijau.",
+    slug: "makanan-sehat-otak",
+    img: "article4.png",
+    user: { name: "Admin" },
+    created_at: "2025-11-28T15:00:00Z",
+    tag: "Kesehatan Otak",
+  },
+];
 
 export default function Article() {
   function getArticleImgPath(img) {
     if (!img) return "";
     if (img.startsWith("http")) return img;
-    return img.startsWith("/") ? img : `/images/article/${img}`;
+    return img.startsWith("/") ? img : `/article/${img}`;
   }
 
   return (
@@ -13,6 +56,7 @@ export default function Article() {
       className="w-full bg-[#FCFFEC] relative py-10 px-3 md:px-6"
       id="article"
     >
+      {/* Background */}
       <div
         className="absolute inset-0 bg-[url('/background/heroartikel.png')] opacity-40 bg-no-repeat bg-cover bg-top"
         style={{ backgroundAttachment: "fixed" }}
@@ -23,7 +67,7 @@ export default function Article() {
           Artikel Berita
         </h2>
 
-        {/* Grid */}
+        {/* Grid Artikel */}
         <div className="grid gap-8 md:grid-cols-3">
           {articles.map((article) => (
             <div
@@ -35,7 +79,7 @@ export default function Article() {
                 <img
                   src={getArticleImgPath(article.img)}
                   alt={article.title}
-                  className="w-full h-full object-cover transition duration-500"
+                  className="w-full h-full object-cover transition duration-500 hover:scale-105"
                 />
               </div>
 
@@ -56,7 +100,7 @@ export default function Article() {
                     onClick={() => {
                       window.location.href = `/article/${article.slug}`;
                     }}
-                    className="mt-auto flex items-center cursor-pointer justify-center gap-2 px-3 py-2 rounded-full bg-[#4A3A1D] text-white text-xs md:text-sm font-semibold shadow-sm"
+                    className="mt-auto flex items-center cursor-pointer justify-center gap-2 px-3 py-2 rounded-full bg-[#4A3A1D] text-white text-xs md:text-sm font-semibold shadow-sm hover:bg-[#2E2E2E] transition"
                   >
                     Baca Selengkapnya
                     <ArrowRight className="w-3.5 h-3.5" />
