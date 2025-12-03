@@ -9,24 +9,28 @@ export default function HeroAbout() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const sunTranslate = offsetY * 0.4; // lebih kecil biar tidak bergerak terlalu jauh
+    const sunTranslate = offsetY * 0.4;
 
     return (
         <>
-            <div className="hero-container min-h-[70vh] md:min-h-[80vh] flex flex-col bg-gradient-to-b from-[#90C444] to-[#FCFFEC] relative overflow-hidden">
+            <div className="min-h-[70vh] md:min-h-[80vh] flex flex-col bg-gradient-to-b from-[#90C444] to-[#FCFFEC] relative overflow-hidden">
 
                 {/* Background */}
                 <div
-                    className="absolute inset-0 bg-[url('/background/heroabout.png')] bg-cover bg-center opacity-40"
-                    style={{ backgroundAttachment: "fixed" }}
+                    className="absolute inset-0 bg-[url('/background/heroabout.png')] bg-cover bg-center opacity-40 bg-fixed"
                 />
 
                 {/* Matahari */}
-                <div className="absolute inset-0 flex top-0 justify-center -translate-y-20 md:-translate-y-36 z-0">
+                <div className="absolute inset-0 flex justify-center top-0 -translate-y-20 md:-translate-y-36 z-0">
                     <img
                         src="/illustrasi/matahari.png"
                         alt="Sun"
-                        className="w-24 h-24 md:w-[350px] md:h-[350px] object-contain sun-img"
+                        className="
+                            w-24 h-24 
+                            md:w-[350px] md:h-[350px] 
+                            object-contain 
+                            transition-transform duration-[100ms] ease-linear
+                        "
                         style={{
                             transform: `translateY(${sunTranslate}px)`,
                         }}
@@ -53,14 +57,6 @@ export default function HeroAbout() {
                     </div>
                 </div>
             </div>
-
-            <style>
-                {`
-                    .sun-img {
-                        transition: transform 0.1s linear;
-                    }
-                `}
-            </style>
         </>
     );
 }

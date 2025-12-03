@@ -19,7 +19,7 @@ export default function Tujuan() {
       progress = Math.min(Math.max(progress, 0), 1);
 
       const isMobile = window.innerWidth < 768;
-      const maxShift = isMobile ? 50 : 110; // lebih kecil dari sebelumnya
+      const maxShift = isMobile ? 50 : 110;
 
       setOffsetX(progress * maxShift);
     };
@@ -31,131 +31,70 @@ export default function Tujuan() {
   }, []);
 
   return (
-    <section className="tujuan-section" ref={sectionRef}>
-      <div className="background-layer" />
+    <section
+      ref={sectionRef}
+      className="
+        relative w-full min-h-screen px-5 pt-16 pb-32
+        flex flex-col items-center justify-start
+        bg-gradient-to-b from-[#FCFFEC] via-[#C4E196] to-[#90C444]
+        overflow-hidden
+      "
+    >
+      {/* Background Layer */}
+      <div
+        className="
+          absolute inset-0 opacity-35 bg-cover bg-center bg-no-repeat
+        "
+        style={{ backgroundImage: "url('/background/herohome.png')", backgroundAttachment: "fixed" }}
+      />
 
-      <div className={`tujuan-card ${animateText ? "animate-in" : ""}`}>
-        <h2 className="tujuan-title">Tujuan</h2>
+      {/* Card */}
+      <div
+        className={`
+          relative z-10 max-w-3xl w-full bg-[#F7FFF0]
+          border border-[#E0F0C2] rounded-2xl shadow-xl
+          px-6 py-8 md:px-8 md:py-10
+          transition-all duration-700 ease-out
+          ${animateText ? "opacity-100 scale-100" : "opacity-0 scale-95"}
+        `}
+      >
+        <h2 className="text-center text-3xl md:text-4xl font-extrabold text-[#3B3B0E] mb-6">
+          Tujuan
+        </h2>
 
-        <p className="tujuan-text">
+        <p className="text-sm md:text-base leading-relaxed text-gray-700 text-justify">
           Mengingat Indonesia masih berada pada tingkat kelaparan{" "}
-          <span className="highlight-red">"Sedang"</span> dengan skor{" "}
-          <span className="highlight-red">17,9</span> berdasarkan Global Hunger Index (GHI) 2022.
-          Maka, Nutriverse hadir untuk mendukung pencapaian tujuan{" "}
-          <span className="highlight-green">"Zero Hunger"</span>. Platform ini memberikan pengetahuan mengenai{" "}
-          <span className="highlight-green">bioteknologi sintetis</span> kepada siswa, sehingga mereka dapat{" "}
-          <span className="highlight-green">mengembangkan</span> berbagai jenis{" "}
-          <span className="highlight-green">tanaman unggulan</span> melalui proses tertentu. Dengan cara ini,
-          Nutriverse berkontribusi pada peningkatan kuantitas dan kualitas hasil pertanian serta pengurangan kelaparan,
-          sekaligus memperkuat ketahanan pangan nasional.
+          <span className="text-[#AF3E3E] font-semibold">"Sedang"</span> dengan skor{" "}
+          <span className="text-[#AF3E3E] font-semibold">17,9</span> berdasarkan Global Hunger Index
+          (GHI) 2022. Maka, Nutriverse hadir untuk mendukung pencapaian tujuan{" "}
+          <span className="text-[#90C444] font-semibold">"Zero Hunger"</span>. Platform ini
+          memberikan pengetahuan mengenai{" "}
+          <span className="text-[#90C444] font-semibold">bioteknologi sintetis</span> kepada siswa,
+          sehingga mereka dapat{" "}
+          <span className="text-[#90C444] font-semibold">mengembangkan</span> berbagai jenis{" "}
+          <span className="text-[#90C444] font-semibold">tanaman unggulan</span> melalui proses
+          tertentu. Dengan cara ini, Nutriverse berkontribusi pada peningkatan kuantitas dan kualitas
+          hasil pertanian serta pengurangan kelaparan, sekaligus memperkuat ketahanan pangan
+          nasional.
         </p>
       </div>
 
-      <div className="grass-wrapper">
+      {/* Grass Images */}
+      <div className="absolute bottom-0 left-0 w-full flex justify-between items-end z-20 pointer-events-none">
         <img
           src="/icon/rumput-kiri.png"
           alt="rumput kiri"
-          className="grass-left"
+          className="w-[40%] max-w-[460px] md:w-[40%] transition-transform duration-150"
           style={{ transform: `translateX(-${offsetX}px)` }}
         />
+
         <img
           src="/icon/rumput-kanan.png"
           alt="rumput kanan"
-          className="grass-right"
+          className="w-[40%] max-w-[460px] md:w-[40%] transition-transform duration-150"
           style={{ transform: `translateX(${offsetX}px)` }}
         />
       </div>
-
-      <style>{`
-        .tujuan-section {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            padding: 4rem 1.25rem 8rem;  /* DIPERKECIL */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background: linear-gradient(to bottom, #FCFFEC, #C4E196, #90C444);
-            overflow: hidden;
-        }
-
-        .background-layer {
-            position: absolute;
-            inset: 0;
-            background-image: url('/background/herohome.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            opacity: 0.35; /* sedikit redup */
-            z-index: 0;
-        }
-
-        .tujuan-card {
-            position: relative;
-            z-index: 10;
-            max-width: 820px;   /* DIPERKECIL */
-            background: #F7FFF0;
-            border-radius: 1.6rem;
-            border: 1px solid #E0F0C2;
-            padding: 2.2rem 1.8rem;  /* DIPERKECIL */
-            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
-            opacity: 0;
-            transform: scale(0.92);
-            transition: all 0.7s ease-out;
-            margin-bottom: 1.5rem;
-        }
-
-        .tujuan-card.animate-in {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .tujuan-title {
-            text-align: center;
-            font-size: 2rem; /* DIPERKECIL */
-            font-weight: 800;
-            color: #3B3B0E;
-            margin-bottom: 1.5rem;
-        }
-
-        .tujuan-text {
-            font-size: 1rem; /* DIPERKECIL */
-            line-height: 1.65;
-            text-align: justify;
-            color: #374151;
-        }
-
-        .highlight-red { color: #AF3E3E; font-weight: 600; }
-        .highlight-green { color: #90C444; font-weight: 600; }
-
-        .grass-wrapper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .grass-left,
-        .grass-right {
-            width: 40%;  /* DIPERKECIL dari 50% */
-            max-width: 460px; /* DIPERKECIL */
-            object-fit: contain;
-            transition: transform 0.15s linear;
-        }
-
-        /* Mobile adjust */
-        @media (max-width: 768px) {
-          .tujuan-title { font-size: 1.6rem; }
-          .tujuan-text { font-size: 0.92rem; }
-          .grass-left, .grass-right { width: 55%; max-width: 320px; }
-        }
-      `}</style>
     </section>
   );
 }

@@ -46,24 +46,20 @@ export default function GlobalHunger() {
   const COLORS = ["#166534", "#84cc16", "#a3e635", "#65a30d", "#3f6212", "#bef264", "#d9f99d"];
 
   const latestGHI = progress.ghiTrend.length ? progress.ghiTrend.at(-1).value : 0;
-
   const indonesiaGHI =
     progress.ghiASEAN.find((c) => c.country === "Indonesia")?.value || 0;
 
-  // CUSTOM LEGEND MINI
   const renderCustomLegend = (props) => {
     const { payload } = props;
     return (
-      <ul className="legend-list">
+      <ul className="flex flex-wrap justify-center gap-2 mt-2">
         {payload.map((entry, index) => (
-          <li key={index} className="legend-item">
+          <li key={index} className="flex items-center gap-1 text-[10px]">
             <span
-              className="legend-color"
+              className="w-3 h-3"
               style={{ backgroundColor: entry.color }}
             />
-            <span className="legend-text">
-              {entry.payload.country}: {entry.payload.value}
-            </span>
+            <span>{entry.payload.country}: {entry.payload.value}</span>
           </li>
         ))}
       </ul>
@@ -71,30 +67,41 @@ export default function GlobalHunger() {
   };
 
   return (
-    <section ref={sectionRef} className="gh-section">
-      <div className="gh-bg" />
+    <section
+      ref={sectionRef}
+      className="relative w-full min-h-[90vh] px-5 py-14 bg-[#FCFFEC] overflow-hidden"
+    >
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-[url('/background/herohome.png')] bg-cover bg-center opacity-40"
+        style={{ backgroundAttachment: "fixed" }}
+      />
 
-      <div className="gh-container">
-        <div className="gh-header fade-in">
-          <h2 className="gh-title">
+      <div className="relative z-10 max-w-[1050px] mx-auto">
+
+        {/* HEADER */}
+        <div className="text-center mb-10 animate-fade-in">
+          <h2 className="text-4xl font-extrabold text-[#3B3B0E]">
             Tingkat Kelaparan di Indonesia
-            <span className="gh-underline" />
           </h2>
+          <div className="w-16 h-1 bg-[#DDA73A] mx-auto mt-2 rounded-md" />
 
-          <p className="gh-subtext">
-            Berdasarkan laporan <strong className="highlight">Global Hunger Index (GHI) 2022</strong>, Indonesia berada pada skor{" "}
-            <strong className="highlight">{indonesiaGHI}</strong> dengan kategori
-            <em> “moderate”.</em> Upaya menuju <strong className="highlight">Zero Hunger</strong> tetap membutuhkan komitmen panjang.
+          <p className="max-w-[760px] mx-auto mt-4 text-[16px]">
+            Berdasarkan laporan <strong className="text-[#537d13]">Global Hunger Index (GHI) 2022</strong>,
+            Indonesia berada pada skor{" "}
+            <strong className="text-[#537d13]">{indonesiaGHI}</strong> dengan kategori
+            <em> “moderate”.</em> Upaya menuju <strong className="text-[#537d13]">Zero Hunger</strong> tetap membutuhkan komitmen panjang.
           </p>
         </div>
 
-        <div className="chart-grid">
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-          {/* ============= BAR CHART ============= */}
-          <div className="chart-card fade-in-up">
-            <h3 className="chart-title">Tren Skor GHI Indonesia (2000–2022)</h3>
+          {/* BAR CHART */}
+          <div className="bg-white/80 rounded-2xl p-5 shadow-lg animate-fade-up">
+            <h3 className="text-center text-[17px] mb-2">Tren Skor GHI Indonesia (2000–2022)</h3>
 
-            <div className="chart-box">
+            <div className="w-full h-[210px]">
               <ResponsiveContainer>
                 <BarChart data={progress.ghiTrend}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -111,21 +118,22 @@ export default function GlobalHunger() {
               </ResponsiveContainer>
             </div>
 
-            <p className="chart-source">Sumber: GHI 2000–2022</p>
+            <p className="text-center text-[10px] mt-1 opacity-60">Sumber: GHI 2000–2022</p>
           </div>
-          
-          <div className="chart-card fade-in-up delay-200">
-            <h3 className="chart-title">Perbandingan GHI ASEAN (2022)</h3>
 
-            <div className="chart-box">
+          {/* PIE CHART */}
+          <div className="bg-white/80 rounded-2xl p-5 shadow-lg animate-fade-up delay-200">
+            <h3 className="text-center text-[17px] mb-2">Perbandingan GHI ASEAN (2022)</h3>
+
+            <div className="w-full h-[210px]">
               <ResponsiveContainer>
                 <PieChart>
                   <Pie
                     data={progress.ghiASEAN}
+                    dataKey="value"
                     cx="50%"
                     cy="50%"
-                    outerRadius={78}
-                    dataKey="value"
+                    outerRadius={70}
                     label={({ country, value }) =>
                       `${country} (${value})`
                     }
@@ -142,175 +150,24 @@ export default function GlobalHunger() {
               </ResponsiveContainer>
             </div>
 
-            <p className="chart-source">Sumber: GHI ASEAN 2022</p>
+            <p className="text-center text-[10px] mt-1 opacity-60">
+              Sumber: GHI ASEAN 2022
+            </p>
           </div>
         </div>
 
-        <div className="gh-summary fade-in-up delay-400">
-          <p>
-            Dengan skor <strong className="text-green">{latestGHI}</strong>, Indonesia menunjukkan perkembangan positif dari dua dekade terakhir.
-            Tantangan seperti <strong>stunting</strong> dan <strong>malnutrisi</strong> tetap menjadi fokus utama dalam mencapai{" "}
-            <span className="highlight">Zero Hunger 2030</span>.
+        {/* SUMMARY */}
+        <div className="text-center mt-8 animate-fade-up delay-400">
+          <p className="text-[16px]">
+            Dengan skor{" "}
+            <strong className="text-green-700">{latestGHI}</strong>, Indonesia menunjukkan
+            perkembangan positif dari dua dekade terakhir.
+            Tantangan seperti <strong>stunting</strong> dan <strong>malnutrisi</strong> tetap menjadi fokus utama
+            menuju <span className="text-[#537d13] font-semibold">Zero Hunger 2030</span>.
           </p>
         </div>
+
       </div>
-
-      {/* ============= CSS ============= */}
-      <style>{`
-        .gh-section {
-          width: 100%;
-          min-height: 90vh;
-          padding: 60px 18px;
-          background: #FCFFEC;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .gh-bg {
-          background-image: url('/background/herohome.png');
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-          opacity: 0.35;
-          position: absolute;
-          inset: 0;
-        }
-
-        .gh-container {
-          position: relative;
-          z-index: 10;
-          max-width: 1050px;
-          margin: auto;
-        }
-
-        .gh-header {
-          text-align: center;
-          margin-bottom: 36px;
-        }
-
-        .gh-title {
-          font-size: 40px;
-          font-weight: 900;
-          color: #3B3B0E;
-        }
-
-        .gh-underline {
-          width: 65px;
-          height: 3px;
-          background: #DDA73A;
-          display: block;
-          margin: 10px auto 0;
-          border-radius: 5px;
-        }
-
-        .gh-subtext {
-          max-width: 760px;
-          margin: 14px auto 0;
-          font-size: 16px;
-        }
-
-        .chart-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 18px;
-        }
-
-        .chart-card {
-          background: rgba(255,255,255,0.85);
-          border-radius: 18px;
-          padding: 18px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-        }
-
-        .chart-title {
-          text-align: center;
-          font-size: 17px;
-          margin-bottom: 10px;
-        }
-
-        .chart-box {
-          width: 100%;
-          height: 210px;
-        }
-
-        .recharts-cartesian-axis-tick tspan {
-          font-size: 10px !important;
-        }
-
-        text.recharts-label {
-          font-size: 10px !important;
-        }
-
-        .recharts-default-tooltip {
-          font-size: 10px !important;
-        }
-
-        .legend-list {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          padding: 0;
-          gap: 4px;
-          margin-top: 6px;
-          list-style: none;
-        }
-
-        .legend-item {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 10px;
-        }
-
-        .legend-color {
-          width: 10px;
-          height: 10px;
-        }
-
-        .legend-text {
-          font-size: 10px;
-        }
-
-        .chart-source {
-          text-align: center;
-          font-size: 10px;
-          margin-top: 4px;
-          opacity: 0.6;
-        }
-
-        .gh-summary {
-          margin-top: 30px;
-          text-align: center;
-          font-size: 16px;
-        }
-          
-        .fade-in {
-          opacity: 0;
-          animation: fadeIn 0.8s forwards;
-        }
-
-        .fade-in-up {
-          opacity: 0;
-          transform: translateY(20px);
-          animation: fadeInUp 0.8s forwards;
-        }
-
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-
-        .delay-400 {
-          animation-delay: 0.4s;
-        }
-
-        @keyframes fadeIn {
-          to { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   );
 }

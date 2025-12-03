@@ -24,7 +24,7 @@ export default function HeroHome() {
 
     return (
         <>
-            <div className="hero-container min-h-[80vh] flex flex-col bg-gradient-to-b from-[#90C444] to-[#FCFFEC]">
+            <div className="relative min-h-[80vh] flex flex-col bg-gradient-to-b from-[#90C444] to-[#FCFFEC] overflow-hidden">
                 
                 {/* Background */}
                 <div
@@ -37,7 +37,12 @@ export default function HeroHome() {
                     <img
                         src="/illustrasi/matahari.png"
                         alt="Sun"
-                        className="w-32 h-32 md:w-[350px] md:h-[350px] object-contain sun-img"
+                        className="
+                            w-32 h-32 
+                            md:w-[350px] md:h-[350px] 
+                            object-contain
+                            transition-transform duration-100
+                        "
                         style={{
                             transform: `translateY(${sunTranslate}px)`,
                         }}
@@ -58,8 +63,9 @@ export default function HeroHome() {
                     <button
                         onClick={handleClick}
                         className={`
-                            mt-5 px-6 md:px-10 py-3 md:py-4 rounded-full shadow-md transition z-20 
-                            text-xl md:text-3xl font-nunito font-extrabold
+                            mt-5 px-6 md:px-10 py-3 md:py-4 
+                            rounded-full shadow-md transition 
+                            text-xl md:text-3xl font-nunito font-extrabold z-20
                             ${
                                 clicked
                                     ? "bg-[#90C444] text-white"
@@ -71,7 +77,7 @@ export default function HeroHome() {
                     </button>
 
                     {/* Ilustrasi bawah */}
-                    <div className="absolute bottom-0">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
                         <img
                             src="/illustrasi/herohome.png"
                             alt="ASN"
@@ -80,14 +86,6 @@ export default function HeroHome() {
                     </div>
                 </div>
             </div>
-
-            <style>
-                {`
-                    .sun-img {
-                        transition: transform 0.1s linear;
-                    }
-                `}
-            </style>
         </>
     );
 }

@@ -2,170 +2,127 @@ import React from "react";
 
 export default function FiturWebsite() {
     return (
-        <section className="fitur-container">
-            <div className="fitur-bg"></div>
+        <section
+            className="
+                relative w-full min-h-screen flex items-center justify-center
+                px-5 py-12 bg-[#FCFFEC] overflow-hidden
+            "
+        >
+            {/* Background */}
+            <div
+                className="
+                    absolute inset-0 opacity-40 bg-cover bg-center bg-no-repeat
+                "
+                style={{ backgroundImage: "url('/background/herohome.png')", backgroundAttachment: "fixed" }}
+            />
 
-            <div className="fitur-wrapper">
-                <h2 className="fitur-title">Fitur Website</h2>
+            <div className="w-full relative z-10">
+                {/* Title */}
+                <h2 className="text-center text-3xl md:text-4xl font-extrabold text-[#3B3B0E] mb-8">
+                    Fitur Website
+                </h2>
 
-                <div className="fitur-card">
-                    <div className="fitur-divider"></div>
+                {/* Card */}
+                <div
+                    className="
+                        relative bg-[#F0FCD7] rounded-xl shadow-xl mx-auto
+                        px-6 py-8 md:px-10 md:py-10 max-w-[950px]
+                    "
+                >
+                    {/* Divider Tengah */}
+                    <div className="
+                        hidden md:block absolute left-1/2 top-6 bottom-6
+                        w-[2px] bg-[#b7df98]
+                    "></div>
 
-                    <div className="fitur-grid">
-                        {/* Kiri */}
-                        <div className="fitur-column right-align">
-                            <div className="fitur-item group">
-                                <img src="/icon/nuti2.png" alt="Buku Terpadu" className="fitur-icon" />
-                                <span className="fitur-text">Buku Terpadu</span>
+                    {/* Grid */}
+                    <div className="
+                        grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12
+                        max-w-[720px] mx-auto
+                    ">
+                        {/* KIRI */}
+                        <div className="flex flex-col gap-10 md:items-end items-center">
+                            <div className="group flex flex-col items-center text-center">
+                                <img
+                                    src="/icon/nuti2.png"
+                                    alt="Buku Terpadu"
+                                    className="
+                                        w-20 md:w-24 transition-all duration-500
+                                        drop-shadow-md group-hover:scale-110 group-hover:rotate-3
+                                        group-hover:animate-bounce
+                                    "
+                                />
+                                <span className="mt-2 text-lg md:text-xl font-medium text-[#3B3B0E]">
+                                    Buku Terpadu
+                                </span>
                             </div>
 
-                            <div className="fitur-item group">
-                                <img src="/icon/nuti3.png" alt="Produk Unggul" className="fitur-icon" />
-                                <span className="fitur-text">Produk Unggul</span>
+                            <div className="group flex flex-col items-center text-center">
+                                <img
+                                    src="/icon/nuti3.png"
+                                    alt="Produk Unggul"
+                                    className="
+                                        w-20 md:w-24 transition-all duration-500
+                                        drop-shadow-md group-hover:scale-110 group-hover:rotate-3
+                                        group-hover:animate-bounce
+                                    "
+                                />
+                                <span className="mt-2 text-lg md:text-xl font-medium text-[#3B3B0E]">
+                                    Produk Unggul
+                                </span>
                             </div>
                         </div>
 
-                        {/* Kanan */}
-                        <div className="fitur-column left-align">
-                            <div className="fitur-item group">
-                                <img src="/icon/nuti1.png" alt="AI Interaktif" className="fitur-icon" />
-                                <span className="fitur-text">AI Interaktif</span>
+                        {/* KANAN */}
+                        <div className="flex flex-col gap-10 md:items-start items-center">
+                            <div className="group flex flex-col items-center text-center">
+                                <img
+                                    src="/icon/nuti1.png"
+                                    alt="AI Interaktif"
+                                    className="
+                                        w-20 md:w-24 transition-all duration-500
+                                        drop-shadow-md group-hover:scale-110 group-hover:rotate-3
+                                        group-hover:animate-bounce
+                                    "
+                                />
+                                <span className="mt-2 text-lg md:text-xl font-medium text-[#3B3B0E]">
+                                    AI Interaktif
+                                </span>
                             </div>
 
-                            <div className="fitur-item group">
-                                <img src="/icon/nuti1.png" alt="Komunitas" className="fitur-icon" />
-                                <span className="fitur-text">Komunitas</span>
+                            <div className="group flex flex-col items-center text-center">
+                                <img
+                                    src="/icon/nuti1.png"
+                                    alt="Komunitas"
+                                    className="
+                                        w-20 md:w-24 transition-all duration-500
+                                        drop-shadow-md group-hover:scale-110 group-hover:rotate-3
+                                        group-hover:animate-bounce
+                                    "
+                                />
+                                <span className="mt-2 text-lg md:text-xl font-medium text-[#3B3B0E]">
+                                    Komunitas
+                                </span>
                             </div>
 
-                            <div className="fitur-item group">
-                                <img src="/icon/nuti4.png" alt="Games" className="fitur-icon" />
-                                <span className="fitur-text">Games</span>
+                            <div className="group flex flex-col items-center text-center">
+                                <img
+                                    src="/icon/nuti4.png"
+                                    alt="Games"
+                                    className="
+                                        w-20 md:w-24 transition-all duration-500
+                                        drop-shadow-md group-hover:scale-110 group-hover:rotate-3
+                                        group-hover:animate-bounce
+                                    "
+                                />
+                                <span className="mt-2 text-lg md:text-xl font-medium text-[#3B3B0E]">
+                                    Games
+                                </span>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            {/* CSS */}
-            <style>{`
-                .fitur-container {
-                    width: 100%;
-                    min-height: 100vh;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 3rem 1.2rem; /* lebih kecil */
-                    position: relative;
-                    background: #FCFFEC;
-                    overflow: hidden;
-                }
-
-                .fitur-bg {
-                    position: absolute;
-                    inset: 0;
-                    background-image: url('/background/herohome.png');
-                    background-size: cover;
-                    background-position: center;
-                    opacity: 0.4;
-                    background-attachment: fixed;
-                }
-
-                .fitur-wrapper {
-                    width: 100%;
-                }
-
-                .fitur-title {
-                    font-size: 2.2rem; /* KECIL */
-                    font-weight: 800;
-                    color: #3B3B0E;
-                    text-align: center;
-                    margin-bottom: 2rem; /* kecil */
-                }
-
-                .fitur-card {
-                    position: relative;
-                    background: #F0FCD7;
-                    border-radius: 0.8rem; /* lebih kecil */
-                    padding: 1.8rem 2rem; /* lebih kecil */
-                    max-width: 950px; /* lebih kecil */
-                    margin: auto;
-                    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-                }
-
-                .fitur-divider {
-                    position: absolute;
-                    left: 50%;
-                    top: 1.5rem;
-                    bottom: 1.5rem;
-                    width: 1.5px; /* lebih tipis */
-                    background: #b7df98;
-                }
-
-                .fitur-grid {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 2.5rem; /* lebih kecil */
-                    max-width: 720px; /* lebih kecil */
-                    margin: auto;
-                }
-
-                .fitur-column {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3rem; /* lebih kecil */
-                    justify-content: center;
-                }
-
-                .right-align {
-                    align-items: flex-end;
-                }
-
-                .left-align {
-                    align-items: flex-start;
-                }
-
-                .fitur-item {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                }
-
-                .fitur-icon {
-                    width: 5rem; /* sebelumnya 7rem → DIPERKECIL 30% */
-                    transition: all 0.5s ease;
-                    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
-                }
-
-                .group:hover .fitur-icon {
-                    transform: scale(1.08) rotate(5deg);
-                    animation: bounce 0.6s;
-                }
-
-                .fitur-text {
-                    margin-top: 0.6rem;
-                    font-size: 1.1rem; /* lebih kecil */
-                    font-weight: 500;
-                    color: #3B3B0E;
-                }
-
-                @keyframes bounce {
-                    0% { transform: translateY(0); }
-                    50% { transform: translateY(-6px); }
-                    100% { transform: translateY(0); }
-                }
-
-                /* Responsive */
-                @media (max-width: 768px) {
-                    .fitur-title { font-size: 1.9rem; }
-                    .fitur-grid { grid-template-columns: 1fr; gap: 2rem; }
-                    .fitur-divider { display: none; }
-                    .right-align, .left-align { align-items: center; }
-                    .fitur-icon { width: 4.3rem; } /* kecil */
-                    .fitur-text { font-size: 1rem; }
-                }
-            `}</style>
         </section>
     );
 }
